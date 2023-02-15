@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:46:29 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/15 08:48:59 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/15 09:58:35 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <stdlib.h>
 
-
 # include "pars_cub.h"
-# include "utils.h"
+# include "debug.h"
+
+# include "../libft/includes/libft.h"
 
 typedef struct rgb
 {

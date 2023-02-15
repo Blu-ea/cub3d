@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 08:25:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/15 09:52:17 by amiguez          ###   ########.fr       */
+/*   Created: 2023/02/15 09:54:28 by amiguez           #+#    #+#             */
+/*   Updated: 2023/02/15 10:08:48 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef DEBUG_H
+# define DEBUG_H
 
-void	pars_error(char *promt, int err)
-{
-	printf("%s\n", promt);
-	exit (err);
-}
+typedef struct data	t_data ;
+
+void	print_map(t_data data);
+
+#endif

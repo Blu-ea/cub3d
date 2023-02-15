@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:22:05 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/15 08:28:50 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/15 10:09:08 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_data	data;
 
 	if (argc != 2)
 	{
@@ -22,4 +22,5 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	data = pars_infile(argv[1]);
+	print_map(data);
 }

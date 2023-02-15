@@ -5,92 +5,93 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/15 07:22:02 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/15 07:53:09 by amiguez          ###   ########.fr        #
+#    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
+#    Updated: 2023/02/15 10:57:05 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= cub3d
+NAME := cub3d
 
+# ############################################################################ #
+DIR_SRCS	:= srcs
+DIR_OBJS	:= .objs
+DIR_INCS	:= includes
+DIR_LIBFT	:= libft
+DIR_MLX		:= mlx_linux
+# ############################################################################ #
+LST_SRCS	:=	main.c\
+				debug.c
+LST_OBJS	:=	$(LST_SRCS:.c=.o)
+LST_INCS	:=	cub3d.h\
+				debug.h\
+				pars_cub.h
+
+PARS	:=	error.c\
+				pars.c
+DIR_PARS	:=	pars_map
+LST_PARS	:=	$(addprefix $(DIR_PARS)/,$(PARS))
+SRC_PARS	:=	$(addprefix $(DIR_SRCS)/,$(LST_PARS))
+OBJ_PARS	:=	$(addprefix $(DIR_OBJS)/,$(LST_PARS:.c=.o))
+
+LST_MLX		:=	libmlx.a
+LST_LIBFT	:=	libft.a
+# ############################################################################ #
+SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS)
+OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS)
+INCS		:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
+LIBFT		:=	$(addprefix $(DIR_LIBFT)/,$(LST_LIBFT))
+MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
+# DEPH		:=	$(OBJS:=.o=.d)
+# -include $(DEPH)
+# ############################################################################ #
+CC			:=	gcc
+CFLAGS		:=	-Wall -Wextra -g3 -Werror
+# ############################################################################ #
 # **************************************************************************** #
-DIR_SRC :=	srcs
-DIR_OBJ :=	.objs
-DIR_INC :=	includes
+ERASE	:=	\033[2K\r
+GREY	:=	\033[30m
+RED		:=	\033[31m
+GREEN	:=	\033[32m
+YELLOW	:=	\033[33m
+BLUE	:=	\033[34m
+PINK	:=	\033[35m
+CYAN	:=	\033[36m
+WHITE	:=	\033[37m
+BOLD	:=	\033[1m
+UNDER	:=	\033[4m
+SUR		:=	\033[7m
+END		:=	\033[0m
 # **************************************************************************** #
+# ############################################################################ #
+all : $(NAME)
 
-LST_SRCS :=	main.c
-LST_OBJS :=	$(LST_SRCS:.c=.o)
-LST_INCS :=	cub3d.h
+$(NAME) : $(OBJS) Makefile $(INCS) | $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -o $@
 
-# **************************************************************************** #
-SRCS	:=	$(addprefix $(DIR_SRC)/,$(LST_SRCS))
-OBJS	:=	$(addprefix $(DIR_OBJ)/,$(LST_OBJS))
-INCS	:=	$(addprefix $(DIR_INC)/,$(LST_INCS))
-# **************************************************************************** #
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCS) -MMD
 
-SRC_MLX	:= libmlx.a
-DIR_MLX	:= mlx_linux
-MLX		:= $(addprefix $(DIR_MLX)/,$(LST_MLX))
+$(DIR_OBJS) :
+	mkdir -p $(DIR_OBJS)
+	mkdir -p $(DIR_OBJS)/$(DIR_PARS)
 
-# **************************************************************************** #
-ERASE	=	\033[2K\r
-GREY	=	\033[30m
-RED		=	\033[31m
-GREEN	=	\033[32m
-YELLOW	=	\033[33m
-BLUE	=	\033[34m
-PINK	=	\033[35m
-CYAN	=	\033[36m
-WHITE	=	\033[37m
-BOLD	=	\033[1m
-UNDER	=	\033[4m
-SUR		=	\033[7m
-END		=	\033[0m
-# **************************************************************************** #
-NORMITEST = 
-NORMINETTE = $(shell norminette $(SRCS) | grep -i 'Error!')
-# **************************************************************************** #
-# /////////////////////////////////
-CC		:= gcc
-CFLAGS	:= -Wall -Werror -Wextra
-# /////////////////////////////////
+$(LIBFT) :
+	make -sC $(DIR_LIBFT)
 
-all: $(NAME)
+$(MLX) :
+	make -sC $(DIR_MLX)
 
-$(NAME): $(OBJS) | $(MLX)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX)
-	printf "$(ERASE)Compiling Cub-3D : $(GREEN) Done $(END)\n"
+clean :
+	rm -rf $(DIR_OBJS)
+	make -sC $(DIR_LIBFT) clean
+	make -sC $(DIR_MLX) clean
 
-ifeq ($(NORMINETTE),$(NORMITEST))
-	printf "$(GREEN)Everything is ok\n$(END)"
-else
-	printf "$(RED)$(SUR)THERE IS AN ERROR WITH NORMINETTE IN CUB-3D FILES !!\n $(NORMINETTE)$(END)"
-endif
+fclean :
+	rm -f $(NAME)
+	rm -rf $(DIR_OBJS)
+	make -sC $(DIR_LIBFT) fclean
 
-$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c $(INCS) Makefile | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(DIR_INC) -c $< -o $@
-	printf "$(ERASE)Compiling $(NAME) : $(BLUE) $< $(END)"
+re : fclean all
 
-$(DIR_OBJ):
-	mkdir -p $(DIR_OBJ)
-
-$(MLX):
-	make -C $(DIR_MLX)
-
-# /////////////////////////////////
-
-clean	:
-	rm -rf $(DIR_OBJ)
-	printf "$(CYAN) /!\ $(END)Erasing .o in Cub3D$(CYAN) /!\ \n$(END)"
-	make -C $(DIR_MLX)
-
-fclean	: clean
-	rm -rf $(NAME)
-	printf "$(RED) /!\ $(END)Erasing Binary executable$(RED) /!\ \n$(END)"
-
-re		: fclean all
-
-# /////////////////////////////////
-
-.PHONY	: all clean fclean re $(DIR_OBJ)
-.SILENT	:
+.PHONY : all clean fclean re $(LIBFT)
+.SILENT :
