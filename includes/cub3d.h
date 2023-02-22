@@ -17,10 +17,11 @@
 
 # include "pars_cub.h"
 # include "debug.h"
+# include "limits.h"
 
 # include "../libft/includes/libft.h"
 
-typedef struct rgb
+typedef struct s_rgb
 {
 	char	a;
 	char	r;
@@ -28,26 +29,45 @@ typedef struct rgb
 	char	b;
 }	t_rgb;
 
-typedef union color
+typedef union s_color
 {
 	void	*value;
 	t_rgb	argb;
 }	t_color;
 
-typedef struct data
+typedef struct s_textures
 {
-	char	**map;
-
-	int		_x;
-	int		_y;
-
 	t_color	floor;
 	t_color	roof;
 
 	void	*_so;
+	char	*path_so;
 	void	*_no;
+	char	*path_no;
 	void	*_we;
+	char	*path_we;
 	void	*_ea;
+	char	*path_ea;
+
+}	t_textures;
+
+
+typedef struct s_player_info
+{
+
+	float	_x;
+	float	_y;
+
+	double	face_x;
+	double	face_y;
+
+}	t_player_data;
+
+typedef struct s_data
+{
+	char	**map;
+
+	char	*file_content;
 
 }	t_data;
 

@@ -12,16 +12,21 @@
 
 #include "cub3d.h"
 
-t_data	pars_infile(char *file)
+int	pars_infile(char *file, t_data *d)
 {
-	int	fd;
+	int		fd;
+	char	*file_content;
 
+	(void) d;
 	if (ft_cub(file) == EXIT_FAILURE)
 		pars_error("Wrong file type (Need a .cub)", 1);
 	fd = open(file, O_RDONLY);
 	if (!fd)
 		pars_error("Open failed", 2);
-	return (fill_data(fd));
+	if (read_file(fd, &d->file_content) || !d->file_content)
+		return (printf ("failled read"), EXIT_FAILURE);
+	
+	return (EXIT_SUCCESS);
 }
 
 int	ft_cub(char *file)
@@ -35,21 +40,20 @@ int	ft_cub(char *file)
 	return (EXIT_FAILURE);
 }
 
-t_data	fill_data(int fd)
+int	read_file(int fd, char **file)
 {
-	t_data	data;
 	char	*temp;
-	char	*input;
 
-	input = get_next_line(fd);
+	*file = get_next_line(fd);
 	temp = get_next_line(fd);
-	printf("%p %d\n", input, fd);
-	while (temp)
+	*file = ft_strjoin_free(*file, temp, FREE_S1);
+	while (temp != 0)
 	{
-		input = ft_strjoin_free(input, temp, FREE_BOTH);
+		free(temp);
 		temp = get_next_line(fd);
+		*file = ft_strjoin_free(*file, temp, FREE_S1);
 	}
-	printf("%s\n", input);
-	data.roof.value = (void *) 5;
-	return (data);
+	if (!file)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

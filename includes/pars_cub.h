@@ -19,9 +19,9 @@ typedef struct data	t_data ;
 
 /*=====================*/
 
-t_data	pars_infile(char *file);
+int		pars_infile(char *file, t_data *data);
 int		ft_cub(char *file);
-t_data	fill_data(int fd);
+int		read_file(int fd, char **file);
 
 /*=====================*/
 
