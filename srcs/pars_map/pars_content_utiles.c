@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/23 05:29:10 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/23 06:15:47 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	start_line(t_data *d, int i)
 {
 	if (i == 0 || d->file.all[i - 1] == '\n')
-{
-	printf ("true for i = %d\n", i);
 		return (1);
-}
 	return (0);
 }
 

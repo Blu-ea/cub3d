@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/23 05:28:05 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/23 06:39:48 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,17 +69,17 @@ END		:=	\033[0m
 # ############################################################################ #
 all : $(NAME)
 
-$(NAME) : $(OBJS) Makefile $(INCS) | $(LIBFT) $(MLX)
+$(NAME) : $(OBJS) Makefile $(INCS) $(LIBFT) | $(MLX)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -o $@
 
-$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCS) -MMD
 
 $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)
 	mkdir -p $(DIR_OBJS)/$(DIR_PARS)
 
-$(LIBFT) :
+$(DIR_LIBFT) :
 	make -sC $(DIR_LIBFT)
 
 $(MLX) :
@@ -97,5 +97,5 @@ fclean :
 
 re : fclean all
 
-.PHONY : all clean fclean re $(LIBFT)
+.PHONY : all clean fclean re $(DIR_LIBFT)
 # .SILENT :

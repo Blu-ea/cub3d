@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/23 05:43:12 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/23 06:33:19 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	add_color(t_data *d, int plan, int i)
 	char	**temp_split;
 
 	j = i;
-	printf ("add_color %d\n", plan);
 	if (d->txr.plan[plan].argb.a == 255)
 		return (-1);
 	while (d->file.all[j] != '\n' && d->file.all[j])
@@ -113,23 +112,21 @@ int	add_color(t_data *d, int plan, int i)
 
 int	pars_color_f(t_data *d, char **src, int ret)
 {
-	int		color;
-	char	i;
-	char	*cmp;
+	int				color;
+	unsigned char	i;
+	char			*cmp;
 
 	(void) d;
 	color = -1;
 	while (++color < 3)
 	{
 		i = ft_atoi(src[color]);
-		printf("i = %d\n", i);
 		cmp = ft_itoa(i);
 		if (!cmp)
-			return (printf ("bad color 1\n"), ft_free_2d_array(src), -1);
-		printf ("src[%d] = '%s'\ncmp = %s\n", color, src[color], cmp);
+			return (ft_free_2d_array(src), -1);
 		if (ft_strncmp(src[color], cmp, ft_strlen(cmp)))
-			return (printf ("bad color 2\n"), ft_free_2d_array(src), free(cmp), -1);
+			return (ft_free_2d_array(src), free(cmp), -1);
 		free(cmp);
 	}
-	return (printf ("good color\n"), ft_free_2d_array(src), ret);
+	return (ft_free_2d_array(src), ret);
 }
