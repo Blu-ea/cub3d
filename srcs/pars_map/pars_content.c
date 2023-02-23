@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/23 06:33:19 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/23 07:23:16 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int	pars_content(t_data *d)
 	while (d->file.all[++i] != '\0')
 	{
 		if (!ft_strncmp(&d->file.all[i], "NO ", 3) && start_line(d, i))
-			i = add_texture(d, NO_, i + 3);
+				i = add_texture(d, NO_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "SO ", 3) && start_line(d, i))
-			i = add_texture(d, SO_, i + 3);
+				i = add_texture(d, SO_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "EA ", 3) && start_line(d, i))
-			i = add_texture(d, EA_, i + 3);
+				i = add_texture(d, EA_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "WE ", 3) && start_line(d, i))
-			i = add_texture(d, WE_, i + 3);
+				i = add_texture(d, WE_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "F ", 2) && start_line(d, i))
-			i = add_color(d, F_, i + 2);
+				i = add_color(d, F_, i + 2);
 		else if (!ft_strncmp(&d->file.all[i], "C ", 2) && start_line(d, i))
-			i = add_color(d, C_, i + 2);
+				i = add_color(d, C_, i + 2);
 		if (i == -1)
 			return (printf ("i = -1\n"), EXIT_FAILURE);
 	}
@@ -102,7 +102,6 @@ int	add_color(t_data *d, int plan, int i)
 		return (-1);
 	if (ft_tablen(temp_split) != 3)
 		return (ft_free_2d_array(temp_split), -1);
-	j = 0;
 	d->txr.plan[plan].argb.r = ft_atoi(temp_split[0]);
 	d->txr.plan[plan].argb.g = ft_atoi(temp_split[1]);
 	d->txr.plan[plan].argb.b = ft_atoi(temp_split[2]);
@@ -124,7 +123,7 @@ int	pars_color_f(t_data *d, char **src, int ret)
 		cmp = ft_itoa(i);
 		if (!cmp)
 			return (ft_free_2d_array(src), -1);
-		if (ft_strncmp(src[color], cmp, ft_strlen(cmp)))
+		if (strncmp(src[color], cmp, strlen(cmp)) || strncmp(src[color], cmp, strlen(src[color])))
 			return (ft_free_2d_array(src), free(cmp), -1);
 		free(cmp);
 	}
