@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/15 10:57:05 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/23 05:28:05 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,12 @@ LST_INCS	:=	cub3d.h\
 				debug.h\
 				pars_cub.h
 
-PARS	:=	error.c\
-				pars.c
+PARS	:=		error.c\
+				pars.c\
+				pars_file.c\
+				pars_content.c\
+				pars_content_utiles.c
+
 DIR_PARS	:=	pars_map
 LST_PARS	:=	$(addprefix $(DIR_PARS)/,$(PARS))
 SRC_PARS	:=	$(addprefix $(DIR_SRCS)/,$(LST_PARS))
@@ -94,4 +98,4 @@ fclean :
 re : fclean all
 
 .PHONY : all clean fclean re $(LIBFT)
-.SILENT :
+# .SILENT :

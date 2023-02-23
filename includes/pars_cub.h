@@ -13,9 +13,12 @@
 #ifndef PARS_CUB_H
 # define PARS_CUB_H
 
-# include <fcntl.h>
+# include "cub3d.h"
 
-typedef struct data	t_data ;
+typedef struct s_data		t_data ;
+typedef enum e_error_list	t_error ;
+
+int		cub_pars(t_data *d, char **argv, int argc);
 
 /*=====================*/
 
@@ -23,9 +26,14 @@ int		pars_infile(char *file, t_data *data);
 int		ft_cub(char *file);
 int		read_file(int fd, char **file);
 
+int		pars_content(t_data *d);
+
+void	ini_d_texture(t_data *d);
+int		start_line(t_data *d, int i);
+
 /*=====================*/
 
-void	pars_error(char *promt, int err);
+t_error	pars_error(t_data *d);
 
 /*=====================*/
 

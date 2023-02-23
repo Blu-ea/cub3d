@@ -12,8 +12,15 @@
 
 #include "cub3d.h"
 
-void	pars_error(char *promt, int err)
+t_error	pars_error(t_data *d)
 {
-	printf("%s\n", promt);
-	exit (err);
+	printf ("path NO = '%s'\n", d->txr.path[0]);
+	printf ("path SO = '%s'\n", d->txr.path[1]);
+	printf ("path EA = '%s'\n", d->txr.path[2]);
+	printf ("path WE = '%s'\n", d->txr.path[3]);
+	printf ("=============\n");
+	printf ("color = '%p'\n", d->txr.plan[0].value);
+	printf ("color = '%p'\n", d->txr.plan[1].value);
+	
+	return (d->err_code);
 }

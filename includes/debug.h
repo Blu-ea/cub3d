@@ -13,7 +13,9 @@
 #ifndef DEBUG_H
 # define DEBUG_H
 
-typedef struct data	t_data ;
+# include "cub3d.h"
+
+typedef struct s_data	t_data ;
 
 void	print_map(t_data data);
 

@@ -14,19 +14,36 @@
 # define CUB3D_H
 
 # include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
 
 # include "pars_cub.h"
 # include "debug.h"
-# include "limits.h"
 
 # include "../libft/includes/libft.h"
 
+# define NO_ 0
+# define SO_ 1
+# define EA_ 2
+# define WE_ 3
+
+# define F_ 0
+# define C_ 1
+
+typedef enum e_error_list
+{
+	SUCCES,
+	ERROR_READ,
+	ERROR_MALLOC,
+	WRONG_MAP
+}	t_error;
+
 typedef struct s_rgb
 {
-	char	a;
-	char	r;
-	char	g;
-	char	b;
+	unsigned char	a;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_rgb;
 
 typedef union s_color
@@ -37,24 +54,14 @@ typedef union s_color
 
 typedef struct s_textures
 {
-	t_color	floor;
-	t_color	roof;
-
-	void	*_so;
-	char	*path_so;
-	void	*_no;
-	char	*path_no;
-	void	*_we;
-	char	*path_we;
-	void	*_ea;
-	char	*path_ea;
+	t_color	plan[2];
+	char	*path[4];
+	void	*_face[4];
 
 }	t_textures;
 
-
 typedef struct s_player_info
 {
-
 	float	_x;
 	float	_y;
 
@@ -63,12 +70,18 @@ typedef struct s_player_info
 
 }	t_player_data;
 
-typedef struct s_data
+typedef struct s_file
 {
 	char	**map;
+	int		fd;
+	char	*all;
+}	t_file;
 
-	char	*file_content;
-
+typedef struct s_data
+{
+	t_file		file;
+	t_textures	txr;
+	t_error		err_code;
 }	t_data;
 
 #endif

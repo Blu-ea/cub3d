@@ -17,6 +17,6 @@ void	print_map(t_data input)
 	int	i;
 
 	i = -1;
-	while (input.map[++i])
-		printf ("%s\n", input.map[i]);
+	while (input.file.map[++i])
+		printf ("%s\n", input.file.map[i]);
 }

@@ -16,12 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc != 2)
-	{
-		printf("Usage : ./cub3d <name_of_map>");
-		return (1);
-	}
-	if (pars_infile(argv[1], &data))
+	if (cub_pars(&data, argv, argc))
 		return (printf ("Failed\n"), 1);
-	print_map(data);
 }
