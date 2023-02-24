@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:19:30 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/24 07:44:34 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:24:29 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	pars_infile(char *file, t_data *d)
 		return (d->err_code = ERROR_OPEN, EXIT_FAILURE);
 	if (read_file(fd, &d->file.all))
 		return (close (fd), d->err_code = TROUBLE_READ, EXIT_FAILURE);
-	printf ("%p \n", d->file.all);
 	return (close (fd), EXIT_SUCCESS);
 }
 

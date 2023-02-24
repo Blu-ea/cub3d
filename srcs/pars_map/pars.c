@@ -20,5 +20,7 @@ int	cub_pars(t_data *d, char **argv, int argc)
 		return (pars_error(d));
 	else if (pars_content(d))
 		return (pars_error(d));
+	else if (pars_map(d, ft_split(d->file.all, '\n')))
+		return (pars_error(d));
 	return (EXIT_SUCCESS);
 }
