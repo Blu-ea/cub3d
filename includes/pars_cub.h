@@ -31,6 +31,8 @@ int		pars_content(t_data *d);
 void	ini_d_texture(t_data *d);
 int		start_line(t_data *d, int i);
 
+int		pars_map(t_data *d, char **file);
+
 /*=====================*/
 
 t_error	pars_error(t_data *d);

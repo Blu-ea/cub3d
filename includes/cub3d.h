@@ -13,9 +13,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdlib.h>
+// # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 
 # include "pars_cub.h"
 # include "debug.h"
@@ -33,17 +34,28 @@
 typedef enum e_error_list
 {
 	SUCCES,
-	ERROR_READ,
+	WRONG_ARG,
+	WRONG_FILE,
+	ERROR_OPEN,
 	ERROR_MALLOC,
-	WRONG_MAP
+	TROUBLE_READ,
+	DOUBLE_DEF_TXR,
+	DOUBLE_DEF_COLOR,
+	NOT_VALID_TXR,
+	NOT_VALID_COLOR,
+	MISSING_COLLOR,
+	MISSING_TXR,
+	NOT_VALID_MAP,
+	WRONG_INPUT_MAP,
+	DOUBLE_STARTING_POINT,
 }	t_error;
 
 typedef struct s_rgb
 {
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
 	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	a;
 }	t_rgb;
 
 typedef union s_color
@@ -68,7 +80,8 @@ typedef struct s_player_info
 	double	face_x;
 	double	face_y;
 
-}	t_player_data;
+	char	start_face;
+}	t_player;
 
 typedef struct s_file
 {
@@ -82,6 +95,7 @@ typedef struct s_data
 	t_file		file;
 	t_textures	txr;
 	t_error		err_code;
+	t_player	pc;
 }	t_data;
 
 #endif

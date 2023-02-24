@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:19:30 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/23 02:17:26 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/24 07:44:34 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ int	pars_infile(char *file, t_data *d)
 	int		fd;
 
 	if (ft_cub(file) == EXIT_FAILURE)
-		return (1);
+		return (d->err_code = WRONG_FILE, EXIT_FAILURE);
 	fd = open(file, O_RDONLY);
 	if (!fd)
-		return (1);
+		return (d->err_code = ERROR_OPEN, EXIT_FAILURE);
 	if (read_file(fd, &d->file.all))
-		return (d->err_code = ERROR_READ, 1);
-	return (EXIT_SUCCESS);
+		return (close (fd), d->err_code = TROUBLE_READ, EXIT_FAILURE);
+	printf ("%p \n", d->file.all);
+	return (close (fd), EXIT_SUCCESS);
 }
 
 int	ft_cub(char *file)
@@ -47,7 +48,7 @@ int	read_file(int fd, char **file)
 	temp = get_next_line(fd);
 	*file = ft_strjoin_free(*file, temp, FREE_S1);
 	if (!*file || !temp)
-		return (ft_double_free(file, &temp), ERROR_MALLOC);
+		return (ft_double_free(file, &temp), EXIT_FAILURE);
 	while (temp && *file)
 	{
 		free(temp);
@@ -55,7 +56,7 @@ int	read_file(int fd, char **file)
 		*file = ft_strjoin_free(*file, temp, FREE_S1);
 	}
 	if (!*file)
-		return (ft_double_free(file, &temp), ERROR_MALLOC);
+		return (ft_double_free(file, &temp), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

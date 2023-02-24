@@ -21,6 +21,11 @@ t_error	pars_error(t_data *d)
 	printf ("=============\n");
 	printf ("color = '%p'\n", d->txr.plan[0].value);
 	printf ("color = '%p'\n", d->txr.plan[1].value);
-	
+	free(d->file.all);
+	ft_free_2d_array(d->file.map);
+	free(d->txr.path[0]);
+	free(d->txr.path[1]);
+	free(d->txr.path[2]);
+	free(d->txr.path[3]);
 	return (d->err_code);
 }

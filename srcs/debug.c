@@ -16,7 +16,33 @@ void	print_map(t_data input)
 {
 	int	i;
 
+	printf ("====== Debug ======\n");
 	i = -1;
 	while (input.file.map[++i])
 		printf ("%s\n", input.file.map[i]);
+	printf ("     =========\n");
+	printf ("Starting position \n_X = %f\n_Y = %f\n", input.pc._x, input.pc._y);
+	printf ("======  End  ======\n");
+}
+
+void	print_d(t_data d)
+{
+	printf ("====== Debug ======\n");
+	printf ("Path txr[NO] = '%s'\n", d.txr.path[NO_]);
+	printf ("Path txr[SO] = '%s'\n", d.txr.path[SO_]);
+	printf ("Path txr[EA] = '%s'\n", d.txr.path[EA_]);
+	printf ("Path txr[WE] = '%s'\n", d.txr.path[WE_]);
+	printf ("       ====\n");
+	printf ("Color F_.A = %d\n", d.txr.plan[F_].argb.a);
+	printf ("Color F_.R = %d\n", d.txr.plan[F_].argb.r);
+	printf ("Color F_.G = %d\n", d.txr.plan[F_].argb.g);
+	printf ("Color F_.B = %d\n", d.txr.plan[F_].argb.b);
+	printf ("Color F_.Value = %p\n", d.txr.plan[F_].value);
+	printf ("       ====\n");
+	printf ("Color C_.A = %d\n", d.txr.plan[C_].argb.a);
+	printf ("Color C_.R = %d\n", d.txr.plan[C_].argb.r);
+	printf ("Color C_.G = %d\n", d.txr.plan[C_].argb.g);
+	printf ("Color C_.B = %d\n", d.txr.plan[C_].argb.b);
+	printf ("Color C_.Value = %p\n", d.txr.plan[C_].value);
+	printf ("======  End  ======\n");
 }

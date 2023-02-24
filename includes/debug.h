@@ -19,4 +19,6 @@ typedef struct s_data	t_data ;
 
 void	print_map(t_data data);
 
+void	print_d(t_data d);
+
 #endif

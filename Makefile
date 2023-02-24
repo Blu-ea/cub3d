@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/23 06:39:48 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/24 07:30:26 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ PARS	:=		error.c\
 				pars.c\
 				pars_file.c\
 				pars_content.c\
-				pars_content_utiles.c
+				pars_content_utiles.c\
+				pars_map.c
 
 DIR_PARS	:=	pars_map
 LST_PARS	:=	$(addprefix $(DIR_PARS)/,$(PARS))
@@ -49,7 +50,7 @@ MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
 # -include $(DEPH)
 # ############################################################################ #
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -g3 -Werror
+CFLAGS		:=	-Wall -Wextra -g3 -Werror -lm -fsanitize=address
 # ############################################################################ #
 # **************************************************************************** #
 ERASE	:=	\033[2K\r
