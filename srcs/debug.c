@@ -44,5 +44,7 @@ void	print_d(t_data d)
 	printf ("Color C_.G = %d\n", d.txr.plan[C_].argb.g);
 	printf ("Color C_.B = %d\n", d.txr.plan[C_].argb.b);
 	printf ("Color C_.Value = %p\n", d.txr.plan[C_].value);
+	printf ("       ====\n");
+	printf ("Mlx_ptr = %p\n", d.mlx.ptr);
 	printf ("======  End  ======\n");
 }

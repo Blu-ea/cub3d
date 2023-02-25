@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/25 18:44:17 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/25 20:03:49 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ END		:=	\033[0m
 all : $(NAME)
 
 $(NAME) : $(OBJS) Makefile $(INCS) $(LIBFT) | $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lmlx -lft -lX11 -lXext
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lX11 -lXext
 #-lmlx -framework OpenGL -framework AppKit
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
