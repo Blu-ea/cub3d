@@ -32,6 +32,8 @@ void	ini_d_texture(t_data *d);
 int		start_line(t_data *d, int i);
 
 int		pars_map(t_data *d, char **file);
+int		pars_xpm(t_data *d);
+int		pars_mlx(t_data *d);
 
 /*=====================*/
 

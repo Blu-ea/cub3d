@@ -20,6 +20,7 @@
 
 # include "pars_cub.h"
 # include "debug.h"
+# include "../mlx_linux/mlx.h"
 
 # include "../libft/includes/libft.h"
 
@@ -90,12 +91,18 @@ typedef struct s_file
 	char	*all;
 }	t_file;
 
+typedef struct s_mlx_data
+{
+	void	*ptr;
+}	t_mlx_d;
+
 typedef struct s_data
 {
 	t_file		file;
 	t_textures	txr;
 	t_error		err_code;
 	t_player	pc;
+	t_mlx_d		mlx;
 }	t_data;
 
 #endif

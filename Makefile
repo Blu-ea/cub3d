@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/24 17:17:37 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/25 18:44:17 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ PARS	:=		error.c\
 				pars_file.c\
 				pars_content.c\
 				pars_content_utiles.c\
-				pars_map.c
+				pars_map.c\
+				pars_mlx.c
 
 DIR_PARS	:=	pars_map
 LST_PARS	:=	$(addprefix $(DIR_PARS)/,$(PARS))
@@ -50,7 +51,7 @@ MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
 # -include $(DEPH)
 # ############################################################################ #
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -g3 -Werror -lm #-fsanitize=address
+CFLAGS		:=	-Wall -Wextra -g3 -Werror #-fsanitize=address
 # ############################################################################ #
 # **************************************************************************** #
 ERASE	:=	\033[2K\r
@@ -71,7 +72,8 @@ END		:=	\033[0m
 all : $(NAME)
 
 $(NAME) : $(OBJS) Makefile $(INCS) $(LIBFT) | $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lmlx -lft -lX11 -lXext
+#-lmlx -framework OpenGL -framework AppKit
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCS) -MMD
