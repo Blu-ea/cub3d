@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/24 19:28:22 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/02/27 16:05:46 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	pars_map_border(char **map, int i, int j, t_data *d)
 		d->pc.start_face = map[i][j];
 		d->pc._y = i;
 		d->pc._x = j;
+		map[i][j] = '0';
 	}
 	return (EXIT_SUCCESS);
 }

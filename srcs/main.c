@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (cub_pars(&data, argv, argc))
 		return (printf ("Failed\n"), 1);
-	print_d(data);
+	print_map(data);
+	game_loop(&data);
 	free(data.file.all);
 	ft_free_2d_array(data.file.map);
 	free(data.txr.path[0]);

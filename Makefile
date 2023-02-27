@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/25 20:03:49 by amiguez          ###   ########.fr        #
+#    Updated: 2023/02/27 17:04:28 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,24 +26,31 @@ LST_INCS	:=	cub3d.h\
 				debug.h\
 				pars_cub.h
 
-PARS	:=		error.c\
+PARS		:=	error.c\
 				pars.c\
 				pars_file.c\
 				pars_content.c\
 				pars_content_utiles.c\
 				pars_map.c\
 				pars_mlx.c
-
 DIR_PARS	:=	pars_map
 LST_PARS	:=	$(addprefix $(DIR_PARS)/,$(PARS))
 SRC_PARS	:=	$(addprefix $(DIR_SRCS)/,$(LST_PARS))
 OBJ_PARS	:=	$(addprefix $(DIR_OBJS)/,$(LST_PARS:.c=.o))
 
+RENDER		:=	loop.c\
+				key_hook.c
+DIR_RENDER	:=	render
+LST_RENDER	:=	$(addprefix $(DIR_RENDER)/,$(RENDER))
+SRC_RENDER	:=	$(addprefix $(DIR_SRCS)/,$(LST_RENDER))
+OBJ_RENDER	:=	$(addprefix $(DIR_OBJS)/,$(LST_RENDER:.c=.o))
+
+
 LST_MLX		:=	libmlx.a
 LST_LIBFT	:=	libft.a
 # ############################################################################ #
-SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS)
-OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS)
+SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS) $(SRC_RENDER)
+OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS) $(OBJ_RENDER)
 INCS		:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
 LIBFT		:=	$(addprefix $(DIR_LIBFT)/,$(LST_LIBFT))
 MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
@@ -81,6 +88,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
 $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)
 	mkdir -p $(DIR_OBJS)/$(DIR_PARS)
+	mkdir -p $(DIR_OBJS)/$(DIR_RENDER)
 
 $(DIR_LIBFT) :
 	make -sC $(DIR_LIBFT)

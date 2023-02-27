@@ -16,11 +16,13 @@
 // # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <math.h>
+# include <math.h> 
 
 # include "pars_cub.h"
 # include "debug.h"
+# include "render.h"
 # include "../mlx_linux/mlx.h"
+# include "key.h"
 
 # include "../libft/includes/libft.h"
 
@@ -31,6 +33,9 @@
 
 # define F_ 0
 # define C_ 1
+
+# define S_WIDTH 1900
+# define S_LENGHT 1700
 
 typedef enum e_error_list
 {
@@ -49,6 +54,8 @@ typedef enum e_error_list
 	NOT_VALID_MAP,
 	WRONG_INPUT_MAP,
 	DOUBLE_STARTING_POINT,
+	MLX_INIT_FAIL,
+	MLX_WIN_FAIL,
 }	t_error;
 
 typedef struct s_rgb
@@ -94,6 +101,7 @@ typedef struct s_file
 typedef struct s_mlx_data
 {
 	void	*ptr;
+	void	*win;
 }	t_mlx_d;
 
 typedef struct s_data
