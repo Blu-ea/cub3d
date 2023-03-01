@@ -6,7 +6,7 @@
 #    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/01 11:10:49 by loumarti         ###   ########lyon.fr    #
+#    Updated: 2023/03/01 11:42:25 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,9 @@ LST_RENDER	:=	$(addprefix $(DIR_RENDER)/,$(RENDER))
 SRC_RENDER	:=	$(addprefix $(DIR_SRCS)/,$(LST_RENDER))
 OBJ_RENDER	:=	$(addprefix $(DIR_OBJS)/,$(LST_RENDER:.c=.o))
 
-RAYC		:=	ft_putwall.c
+RAYC		:=	ft_putwall.c\
+				cast_a_ray.c\
+				ray_tool.c
 				
 DIR_RAYC	:=	raycasting
 LST_RAYC	:=	$(addprefix $(DIR_RAYC)/,$(RAYC))
