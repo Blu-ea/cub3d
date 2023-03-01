@@ -21,7 +21,8 @@ void	print_map(t_data input)
 	while (input.file.map[++i])
 		printf ("%s\n", input.file.map[i]);
 	printf ("     =========\n");
-	printf ("Starting position \n_X = %f\n_Y = %f\n", input.pc._x, input.pc._y);
+	printf ("=== Starting position ===\n_X = %f\n_Y = %f\n", input.pc._x, input.pc._y);
+	printf ("=== Starting rotation ===\nRad = %f\nDeg = %f\n", input.pc.face_rad, input.pc.face_deg);
 	printf ("======  End  ======\n");
 }
 

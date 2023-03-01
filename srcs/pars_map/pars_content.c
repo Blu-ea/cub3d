@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/24 19:28:38 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/01 05:55:48 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	pars_texture_f(t_data *d)
 		i = ft_strlen(d->txr.path[f]);
 		if (i < 4)
 			return (d->err_code = NOT_VALID_TXR, EXIT_FAILURE);
-		if (d->txr.path[f][i - 1] != 'm' || d->txr.path[f][i - 2] != 'p' \
-			|| d->txr.path[f][i - 3] != 'x' || d->txr.path[f][i - 4] != '.')
+		if (d->txr.path[f][i - 1] != 'M' || d->txr.path[f][i - 2] != 'P' \
+			|| d->txr.path[f][i - 3] != 'X' || d->txr.path[f][i - 4] != '.')
 			return (d->err_code = NOT_VALID_TXR, EXIT_FAILURE);
 		f++;
 	}

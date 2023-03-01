@@ -33,9 +33,10 @@
 
 # define F_ 0
 # define C_ 1
-
-# define S_WIDTH 1900
-# define S_LENGHT 1700
+	// WIDTH IS DEFINE FOR X
+# define S_WIDTH 1900 
+	// LENGTH IS DEFINE FOR Y
+# define S_LENGTH 1700
 
 typedef enum e_error_list
 {
@@ -54,8 +55,13 @@ typedef enum e_error_list
 	NOT_VALID_MAP,
 	WRONG_INPUT_MAP,
 	DOUBLE_STARTING_POINT,
+	NO_STARTING_POINT,
 	MLX_INIT_FAIL,
 	MLX_WIN_FAIL,
+	MLX_NEW_IMG_FAILED,
+	MLX_MAP_FAILED,
+	BAD_TEXTURE,
+	XPM_IMAGE_FAILED,
 }	t_error;
 
 typedef struct s_rgb
@@ -66,10 +72,11 @@ typedef struct s_rgb
 	unsigned char	a;
 }	t_rgb;
 
-typedef union s_color
+typedef union u_color
 {
 	void	*value;
 	t_rgb	argb;
+	int		i_v;
 }	t_color;
 
 typedef struct s_textures
@@ -77,16 +84,16 @@ typedef struct s_textures
 	t_color	plan[2];
 	char	*path[4];
 	void	*_face[4];
-
+	int		size;
 }	t_textures;
 
 typedef struct s_player_info
 {
-	float	_x;
-	float	_y;
+	double	_x;
+	double	_y;
 
-	double	face_x;
-	double	face_y;
+	double	face_rad;
+	double	face_deg;
 
 	char	start_face;
 }	t_player;
@@ -96,6 +103,9 @@ typedef struct s_file
 	char	**map;
 	int		fd;
 	char	*all;
+
+	int		length;
+	int		width;
 }	t_file;
 
 typedef struct s_mlx_data
@@ -104,6 +114,15 @@ typedef struct s_mlx_data
 	void	*win;
 }	t_mlx_d;
 
+typedef struct s_new_image
+{
+	void	*img;
+	char	*addr;
+	int		endian;
+	int		bit_per_pixel;
+	int		line_length;
+}	t_new_image;
+
 typedef struct s_data
 {
 	t_file		file;
@@ -111,6 +130,7 @@ typedef struct s_data
 	t_error		err_code;
 	t_player	pc;
 	t_mlx_d		mlx;
+	t_new_image	n_image;
 }	t_data;
 
 #endif

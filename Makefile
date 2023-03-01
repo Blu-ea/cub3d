@@ -6,7 +6,7 @@
 #    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/02/27 17:04:28 by amiguez          ###   ########.fr        #
+#    Updated: 2023/03/01 08:54:57 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,15 @@ LST_SRCS	:=	main.c\
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 LST_INCS	:=	cub3d.h\
 				debug.h\
-				pars_cub.h
+				pars_cub.h\
+				render.h\
+				key.h
 
 PARS		:=	error.c\
 				pars.c\
 				pars_file.c\
 				pars_content.c\
-				pars_content_utiles.c\
+				pars_utiles.c\
 				pars_map.c\
 				pars_mlx.c
 DIR_PARS	:=	pars_map
@@ -39,7 +41,12 @@ SRC_PARS	:=	$(addprefix $(DIR_SRCS)/,$(LST_PARS))
 OBJ_PARS	:=	$(addprefix $(DIR_OBJS)/,$(LST_PARS:.c=.o))
 
 RENDER		:=	loop.c\
-				key_hook.c
+				h_key.c\
+				h_mouse.c\
+				render.c\
+				move.c\
+				utils.c\
+				mini_map.c
 DIR_RENDER	:=	render
 LST_RENDER	:=	$(addprefix $(DIR_RENDER)/,$(RENDER))
 SRC_RENDER	:=	$(addprefix $(DIR_SRCS)/,$(LST_RENDER))
@@ -58,7 +65,7 @@ MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
 # -include $(DEPH)
 # ############################################################################ #
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -g3 -Werror #-fsanitize=address
+CFLAGS		:=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 # ############################################################################ #
 # **************************************************************************** #
 ERASE	:=	\033[2K\r
@@ -91,6 +98,8 @@ $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)/$(DIR_RENDER)
 
 $(DIR_LIBFT) :
+	git submodule update --remote --rebase $(DIR_LIBFT)
+	printf "$(YELLOW)LIBFT IS UP TO DATE!\n$(END)$(RED)"
 	make -sC $(DIR_LIBFT)
 
 $(MLX) :
@@ -104,9 +113,10 @@ clean :
 fclean :
 	rm -f $(NAME)
 	rm -rf $(DIR_OBJS)
+	make -sC $(DIR_MLX) clean
 	make -sC $(DIR_LIBFT) fclean
 
 re : fclean all
 
-.PHONY : all clean fclean re $(DIR_LIBFT)
-# .SILENT :
+.PHONY : all clean fclean re $(DIR_LIBFT) $(MLX)
+.SILENT :

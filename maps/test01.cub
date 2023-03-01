@@ -4,18 +4,19 @@ Wont work if
 	absence of a wall txr/color declaration
 
 
-NO ./../textures/north.xpm
+NO ./textures/north.XPM
 
-SO ./../textures/south.xpm
+SO ./textures/south.XPM
 
-WE ./../textures/weast.xpm
+WE ./textures/weast.XPM
 
-EA ./../textures/east.xpm
+EA ./textures/east.XPM
 
-F 255,12,255
-C 0,255,1
+C 40,50,60
+F 60,50,40
 
-        1111111111111111111111111
+
+
         1000000000110000000000001
         1011000001110000000000001
         1001000000000000000000001

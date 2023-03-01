@@ -6,16 +6,16 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/02/27 16:05:46 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/01 07:45:05 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	pars_map_fill(t_data *d, char **file);
-int	pars_map_start_l(char *line);
-int	pars_map_input(t_data *d, char **map);
-int	pars_map_border(char **map, int i, int j, t_data *d);
+int		pars_map_fill(t_data *d, char **file);
+int		pars_map_input(t_data *d, char **map);
+int		pars_map_border(char **map, int i, int j, t_data *d);
+void	pars_set_rotation(t_data *d);
 
 int	pars_map(t_data *d, char **file)
 {
@@ -49,43 +49,33 @@ int	pars_map_fill(t_data *d, char **file)
 	return (EXIT_SUCCESS);
 }
 
-int	pars_map_start_l(char *line)
-{
-	int	i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
-			return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
-
 int	pars_map_input(t_data *d, char **map)
 {
-	int	i;
+	int	*i;
 	int	j;
 
-	i = -1;
-	while (map[++i])
+	d->file.width = 0;
+	i = &d->file.length;
+	*i = 0;
+	while (map[++*i])
 	{
 		j = -1;
-		while (map[i][++j])
+		while (map[*i][++j])
 		{
-			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[*i][j] == '0' || map[*i][j] == 'N' || map[*i][j] == 'S'
+				|| map[*i][j] == 'E' || map[*i][j] == 'W')
 			{
-				if (pars_map_border(map, i, j, d))
+				if (pars_map_border(map, *i, j, d))
 					return (EXIT_FAILURE);
 			}
-			else if (map[i][j] != ' ' && map[i][j] != '1')
+			else if (map[*i][j] != ' ' && map[*i][j] != '1')
 				return (d->err_code = WRONG_INPUT_MAP, EXIT_FAILURE);
 		}
+		if (j > d->file.width)
+			d->file.width = j;
 	}
 	if (d->pc._x == 0 || d->pc._y == 0)
-		return (printf ("No starting position\n"), EXIT_FAILURE);
+		return (d->err_code = NO_STARTING_POINT, EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -105,9 +95,23 @@ int	pars_map_border(char **map, int i, int j, t_data *d)
 		if (d->pc.start_face != '0')
 			return (d->err_code = DOUBLE_STARTING_POINT, EXIT_FAILURE);
 		d->pc.start_face = map[i][j];
-		d->pc._y = i;
-		d->pc._x = j;
+		d->pc._y = i + .5;
+		d->pc._x = j + .5;
+		pars_set_rotation(d);
 		map[i][j] = '0';
 	}
 	return (EXIT_SUCCESS);
+}
+
+void	pars_set_rotation(t_data *d)
+{
+	if (d->pc.start_face == 'N')
+		d->pc.face_rad = M_PI / 2;
+	else if (d->pc.start_face == 'S')
+		d->pc.face_rad = -M_PI / 2;
+	else if (d->pc.start_face == 'E')
+		d->pc.face_rad = 0;
+	else
+		d->pc.face_rad = M_PI;
+	d->pc.face_deg = d->pc.face_rad * (180.0 / M_PI);
 }

@@ -20,8 +20,9 @@ int	main(int argc, char **argv)
 
 	init_data(&data);
 	if (cub_pars(&data, argv, argc))
-		return (printf ("Failed\n"), 1);
+		return (printf ("Failed\n"), data.err_code);
 	print_map(data);
+	print_d(data);
 	game_loop(&data);
 	free(data.file.all);
 	ft_free_2d_array(data.file.map);
@@ -39,8 +40,6 @@ void	init_data(t_data *data)
 	data->pc._x = 0;
 	data->pc._y = 0;
 	data->pc.start_face = '0';
-	data->pc.face_x = 0;
-	data->pc.face_y = 0;
 	data->txr.plan[0].value = 0x00000000;
 	data->txr.plan[1].value = 0x00000000;
 	data->txr.path[0] = NULL;

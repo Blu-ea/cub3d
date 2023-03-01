@@ -35,6 +35,8 @@ int		pars_map(t_data *d, char **file);
 int		pars_xpm(t_data *d);
 int		pars_mlx(t_data *d);
 
+int		pars_map_start_l(char *line);
+
 /*=====================*/
 
 t_error	pars_error(t_data *d);
