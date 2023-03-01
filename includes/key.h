@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:43:57 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 08:55:03 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/01 09:55:09 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@
 # define ON_MOUSEUP		5	//int (*f)(int button, int x, int y, void *param)
 # define ON_MOUSMOVE	6	//int (*f)(int x, int y, void *param)
 # define ON_EXPOSE		12	//int (*f)(void *param)
-# define ON_DESTROY 	17	//int (*f)(void *param)git submodule update --remote --rebase $(DIR_LIBFT)
-	printf "$(YELLOW)LIBFT IS UP TO DATE!\n$(END)$(RED)"
+# define ON_DESTROY 	17	//int (*f)(void *param)
 
 // Mouse button
 
