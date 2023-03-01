@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/01 09:51:51 by amiguez          ###   ########.fr        #
+#    Updated: 2023/03/01 11:10:49 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ LST_INCS	:=	cub3d.h\
 				debug.h\
 				pars_cub.h\
 				render.h\
-				key.h
+				key.h\
+				raycasting.h
 
 PARS		:=	error.c\
 				pars.c\
@@ -52,12 +53,19 @@ LST_RENDER	:=	$(addprefix $(DIR_RENDER)/,$(RENDER))
 SRC_RENDER	:=	$(addprefix $(DIR_SRCS)/,$(LST_RENDER))
 OBJ_RENDER	:=	$(addprefix $(DIR_OBJS)/,$(LST_RENDER:.c=.o))
 
+RAYC		:=	ft_putwall.c
+				
+DIR_RAYC	:=	raycasting
+LST_RAYC	:=	$(addprefix $(DIR_RAYC)/,$(RAYC))
+SRC_RAYC	:=	$(addprefix $(DIR_SRCS)/,$(LST_RAYC))
+OBJ_RAYC	:=	$(addprefix $(DIR_OBJS)/,$(LST_RAYC:.c=.o))
+
 
 LST_MLX		:=	libmlx.a
 LST_LIBFT	:=	libft.a
 # ############################################################################ #
-SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS) $(SRC_RENDER)
-OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS) $(OBJ_RENDER)
+SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS) $(SRC_RENDER) $(SRC_RAYC)
+OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS) $(OBJ_RENDER) $(OBJ_RAYC)
 INCS		:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
 LIBFT		:=	$(addprefix $(DIR_LIBFT)/,$(LST_LIBFT))
 MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
@@ -96,6 +104,7 @@ $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)
 	mkdir -p $(DIR_OBJS)/$(DIR_PARS)
 	mkdir -p $(DIR_OBJS)/$(DIR_RENDER)
+	mkdir -p $(DIR_OBJS)/$(DIR_RAYC)
 
 $(DIR_LIBFT) :
 	git submodule update --remote --rebase $(DIR_LIBFT)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:03:04 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 07:41:47 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/01 10:15:47 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	ft_render(t_data *data)
 				my_mlx_pixel_put(d, x, y, (int)d->txr.plan[F_].i_v);
 		}
 	}
+
+	// Loup se greffe ici
+	ft_putwall(d);
+
 	x = 0;
 	y = 0;
 	ft_putcrossair(d);

@@ -21,6 +21,7 @@
 # include "pars_cub.h"
 # include "debug.h"
 # include "render.h"
+# include "raycasting.h"
 # include "../mlx_linux/mlx.h"
 # include "key.h"
 
