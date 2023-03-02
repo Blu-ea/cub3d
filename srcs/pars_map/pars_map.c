@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 07:45:05 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/01 11:39:34 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	pars_map_input(t_data *d, char **map)
 
 	d->file.width = 0;
 	i = &d->file.length;
-	*i = 0;
+	*i = -1;
 	while (map[++*i])
 	{
 		j = -1;

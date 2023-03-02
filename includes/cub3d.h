@@ -80,6 +80,10 @@ typedef union u_color
 	int		i_v;
 }	t_color;
 
+	/**** To free *****/
+	/* path  0 to 4   */
+	/* _face 0 to 4   */
+	/******************/
 typedef struct s_textures
 {
 	t_color	plan[2];
@@ -99,6 +103,10 @@ typedef struct s_player_info
 	char	start_face;
 }	t_player;
 
+	/**** To free ***********/
+	/* Map (double pointer) */
+	/* All                  */
+	/************************/
 typedef struct s_file
 {
 	char	**map;
@@ -109,12 +117,18 @@ typedef struct s_file
 	int		width;
 }	t_file;
 
+	/**** Need to destroy ***/
+	/*		ptr & win		*/
+	/************************/
 typedef struct s_mlx_data
 {
 	void	*ptr;
 	void	*win;
 }	t_mlx_d;
 
+	/**** Need to destroy ***/
+	/*			img			*/
+	/************************/
 typedef struct s_new_image
 {
 	void	*img;
