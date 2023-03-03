@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 10:58:48 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/03 15:44:57 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,12 @@ void	get_unit_step(t_rayc *r)
 
 static double	uss_formula(double top, double bot)
 {
-	return(sqrt(1 + (top / bot) * (top / bot)));
+	// Can't print this
+	// if (bot == 0)
+	// {
+	// 	printf("ckecking : division par 0.0\n");
+	// 	return (1e30);
+	// }
+	// else
+		return(sqrt(1 + (top / bot) * (top / bot)));
 }

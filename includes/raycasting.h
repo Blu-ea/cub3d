@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 12:23:57 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/03 15:22:18 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ typedef struct s_rayc {
 	// double	perp_dist_wall;
 	
 
-	
-
 	// int		side; //was a NS or a EW wall hit?
 
 	// //infos to draw a line
@@ -97,10 +95,13 @@ typedef struct s_rayc {
 void	ft_putwall(t_data *d);
 void	cast_a_ray(t_data *d, int x);
 
-// raycasting utilitaries functions
+// raycasting utilitaries
 double	get_dir_x(double angle);
 double	get_dir_y(double angle);
 // double	get_delta_dir(double ray_dir_xy);
 void	get_unit_step(t_rayc *r);
+
+// debug
+void	print_rayc1(t_rayc *r);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/03 11:02:39 by loumarti         ###   ########lyon.fr    #
+#    Updated: 2023/03/03 14:13:57 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ RAYC		:=	ft_putwall.c\
 				cast_a_ray.c\
 				ray_tool.c\
 				dvect_tool.c\
-				ivect_tool.c
+				ivect_tool.c\
+				rayc_debug.c
 DIR_RAYC	:=	raycasting
 LST_RAYC	:=	$(addprefix $(DIR_RAYC)/,$(RAYC))
 SRC_RAYC	:=	$(addprefix $(DIR_SRCS)/,$(LST_RAYC))
