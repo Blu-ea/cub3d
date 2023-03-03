@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwall.c                                       :+:      :+:    :+:   */
+/*   dvect_tool.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 10:09:24 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 09:21:48 by loumarti         ###   ########lyon.fr   */
+/*   Created: 2023/03/03 09:26:43 by loumarti          #+#    #+#             */
+/*   Updated: 2023/03/03 09:55:10 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+# include "d_vector.h"
 
-void	ft_putwall(t_data *d)
+t_dvect	init_dvect(double x, double y)
 {
-	// int	x;
+	t_dvect	new;
 
-	// x = 0;
-	// while (x < S_WIDTH)
-	// {
-	// 	cast_a_ray(d, x);
-	// 	x++;
-	// }
-
-	// test en lancant un seul rayon tout droit
-	cast_a_ray(d, S_WIDTH / 2);
-	
-	
-
+	new.x = x;
+	new.y = y;
+	return (new);
 }

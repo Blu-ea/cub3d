@@ -6,7 +6,7 @@
 #    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/01 11:42:25 by loumarti         ###   ########lyon.fr    #
+#    Updated: 2023/03/03 11:02:39 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ LST_INCS	:=	cub3d.h\
 				pars_cub.h\
 				render.h\
 				key.h\
-				raycasting.h
+				raycasting.h\
+				d_vector.h\
+				i_vector.h
 
 PARS		:=	error.c\
 				pars.c\
@@ -55,8 +57,9 @@ OBJ_RENDER	:=	$(addprefix $(DIR_OBJS)/,$(LST_RENDER:.c=.o))
 
 RAYC		:=	ft_putwall.c\
 				cast_a_ray.c\
-				ray_tool.c
-				
+				ray_tool.c\
+				dvect_tool.c\
+				ivect_tool.c
 DIR_RAYC	:=	raycasting
 LST_RAYC	:=	$(addprefix $(DIR_RAYC)/,$(RAYC))
 SRC_RAYC	:=	$(addprefix $(DIR_SRCS)/,$(LST_RAYC))
@@ -96,11 +99,11 @@ END		:=	\033[0m
 all : $(NAME)
 
 $(NAME) : $(OBJS) Makefile $(INCS) $(LIBFT) | $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lX11 -lXext
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lm -lX11 -lXext
 #-lmlx -framework OpenGL -framework AppKit
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(DIR_INCS) -MMD
+	$(CC) $(CFLAGS) -lm -c $< -o $@ -I$(DIR_INCS) -MMD
 
 $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)

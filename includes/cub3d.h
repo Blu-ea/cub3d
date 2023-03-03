@@ -21,9 +21,14 @@
 # include "pars_cub.h"
 # include "debug.h"
 # include "render.h"
-# include "raycasting.h"
 # include "../mlx_linux/mlx.h"
 # include "key.h"
+
+// includes from loumarti
+# include "raycasting.h"
+# include "d_vector.h"
+# include "i_vector.h"
+# include <stdbool.h>
 
 # include "../libft/includes/libft.h"
 
