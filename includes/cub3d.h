@@ -21,8 +21,9 @@
 # include "pars_cub.h"
 # include "debug.h"
 # include "render.h"
-# include "../mlx_linux/mlx.h"
 # include "key.h"
+# include "move.h"
+# include "../mlx_linux/mlx.h"
 
 // includes from loumarti
 # include "raycasting.h"

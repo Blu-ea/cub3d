@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:03:38 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 10:53:26 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/02 19:39:37 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # include "cub3d.h"
 
 void	game_loop(t_data *d);
-
-int		ft_key(int key, void *data);
-int		ft_mouse(int button, int x, int y, t_data *d);
-
-void	ft_move(int key, t_data *data);
 
 int		ft_render(t_data *d);
 

@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:39:03 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 07:45:17 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/04 01:40:40 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ int	ft_xpm_img(t_data *d)
 	i = -1;
 	while (++i < 4)
 	{
-		d->txr._face[i]= mlx_xpm_file_to_image(d->mlx.ptr, d->txr.path[0], &width, &height);
-		printf ("Access = %d\n", access(d->txr.path[0], R_OK));
-		perror("test");
-		printf ("pointer[%d] = %p\n", i, d->txr._face[i]);
+		d->txr._face[i] = mlx_xpm_file_to_image \
+			(d->mlx.ptr, d->txr.path[0], &width, &height);
 		if (!d->txr._face[i])
 			return (d->err_code = XPM_IMAGE_FAILED, EXIT_FAILURE);
 		if (width != height && d->txr.size != width && d->txr.size != 0)

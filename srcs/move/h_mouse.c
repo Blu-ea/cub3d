@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 06:45:54 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 07:02:07 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/02 18:02:33 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int	ft_mouse(int button, int x, int y, t_data *d)
 		mlx_mouse_show(d->mlx.ptr, d->mlx.win);
 		hide = 0;
 	}
+	else if (button == LMB)
+		printf ("x,y = %d,%d\n", x, y);
 	return (0);
 }

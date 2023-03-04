@@ -46,4 +46,8 @@ void	init_data(t_data *data)
 	data->txr.path[1] = NULL;
 	data->txr.path[2] = NULL;
 	data->txr.path[3] = NULL;
+	data->txr._face[0] = NULL;
+	data->txr._face[1] = NULL;
+	data->txr._face[2] = NULL;
+	data->txr._face[3] = NULL;
 }
