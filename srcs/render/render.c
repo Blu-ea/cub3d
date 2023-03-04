@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:03:04 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 07:02:00 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 10:29:00 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_render(t_data *data)
 
 	x = 0;
 	y = 0;
-	ft_putcrossair(d);
 	ft_mini_map(d);
 	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
 	if (!mlx_in_bound(x, y))

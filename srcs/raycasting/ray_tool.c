@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 07:37:21 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 11:17:29 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ double get_dir_x(double angle)
 }
 
 // get vector direction y coordinate from an angle in radians
+// -1 * sinus because y axis is reverted in the pixel grid
 double get_dir_y(double angle)
 {
 	return (-sin(angle));
@@ -53,12 +54,13 @@ void	get_unit_step(t_rayc *r)
 
 static double	uss_formula(double top, double bot)
 {
-	// Can't print this
-	// if (bot == 0)
+	// //Can't print this
+	// if ((int)bot == 0)
 	// {
 	// 	printf("ckecking : division par 0.0\n");
 	// 	return (1e30);
 	// }
 	// else
+	// 	return ()
 		return(sqrt(1 + (top / bot) * (top / bot)));
 }

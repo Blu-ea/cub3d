@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 09:10:28 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 11:14:56 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	cast_a_ray(t_data *d, int x)
 	if (rayc.hit == true) // voir aussi ici le cas inf
 	{
 		catch_inter(&rayc);
-		//wall_slice(d, &rayc);
+		wall_slice(d, &rayc, x);
 	}
 	
 	// set_draw_infos(d, &rayc);
@@ -90,7 +90,7 @@ static void	get_stockxy_step(t_rayc *r)
 // here the ray is shot
 static void	perform_dda(t_data *d, t_rayc *r)
 {
-	while (ft_inf_wall(r, d)) // ajouter une condition de sortie en fonction de l'infini
+	while (ft_inf_wall(r, d))
 	{
 		//jump to next map square, either in x-direction, or in y-direction
 		if (r->stockxy.x < r->stockxy.y)
@@ -126,11 +126,3 @@ static void	catch_inter(t_rayc *r)
 	r->inter.y = r->start.y + (r->dir.y * r->length);
 	printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
 }
-
-//	printf("intersection (%f, %f)\n", r->inter.x, r->inter.y);
-
-// static void	set_draw_infos(t_data *d, t_rayc *r)
-// {
-// 	r->color = BLUE4;
-// 	// continuer ici
-// }

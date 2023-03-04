@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 09:06:48 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 10:06:51 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@
 // datas to draw each slice of wall
 typedef struct s_draw
 {
-	double	pwd; // perpendicular wall distance
-	int		sh; // slice height
+	double	swd; // slice wall distance
+	int		sh; // slice wall height
+	int		start;
+	int		end;
 
 }				t_draw;
 
@@ -110,7 +112,7 @@ int		ft_is_wall(int x, int y, t_data *d);
 int		ft_inf_wall(t_rayc *r, t_data *d);
 
 // draw wall
-void	wall_slice(t_data *d, t_rayc *r);
+void	wall_slice(t_data *d, t_rayc *r, int x);
 
 // debug
 void	print_rayc1(t_rayc *r);
