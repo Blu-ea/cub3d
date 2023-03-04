@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 15:51:55 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 09:10:28 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_rayc(t_data *d, t_rayc *r, int x);
 static void	get_stockxy_step(t_rayc *r);
 static void	perform_dda(t_data *d, t_rayc *r);
+static void	catch_inter(t_rayc *r);
 
 void	cast_a_ray(t_data *d, int x)
 {
@@ -23,8 +24,14 @@ void	cast_a_ray(t_data *d, int x)
 	init_rayc(d, &rayc, x);
 	get_stockxy_step(&rayc);
 	perform_dda(d, &rayc);
+	if (rayc.hit == true) // voir aussi ici le cas inf
+	{
+		catch_inter(&rayc);
+		//wall_slice(d, &rayc);
+	}
+	
 	// set_draw_infos(d, &rayc);
-	exit(0); // pour pas boucler
+	//exit(0); // pour pas boucler
 }
 
 static void	init_rayc(t_data *d, t_rayc *r, int x)
@@ -83,7 +90,7 @@ static void	get_stockxy_step(t_rayc *r)
 // here the ray is shot
 static void	perform_dda(t_data *d, t_rayc *r)
 {
-	while (r->hit == false)
+	while (ft_inf_wall(r, d)) // ajouter une condition de sortie en fonction de l'infini
 	{
 		//jump to next map square, either in x-direction, or in y-direction
 		if (r->stockxy.x < r->stockxy.y)
@@ -91,26 +98,33 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->map.x += r->step.x;
 			r->length = r->stockxy.x;
 			r->stockxy.x += r->uss.x;
+			r->side = false;
 		}
 		else
 		{
 			r->map.y += r->step.y;
 			r->length = r->stockxy.y;
 			r->stockxy.y += r->uss.y;
+			r->side = true;
 		}
 		printf("map cheking current :  tile(%d, %d) ", r->map.x, r->map.y); //checking
-		printf("= '%c'\n", d->file.map[r->map.x][r->map.y]);
+		if (map_in_bound(r->map.x, r->map.y, d))
+			printf("= '%c'\n", d->file.map[r->map.y][r->map.x]); // checking
 	//Check if ray has hit a wall
-	// [?] map[x][y] ou map[y][x]
 	// if (r->map.x >= 0 && r->map.x < S_WIDTH && r->map.y >= 0 && r->map.y < S_LENGTH) // dans le cas utilise distance
-		if (d->file.map[r->map.x][r->map.y] == '1')
+		if (ft_is_wall(r->map.x, r->map.y, d))
 		{
 			r->hit = true;
-			printf("hit calculated with tile(%d, %d)\n", r->map.x, r->map.y);
-		
+			printf("hit calculated with tile(%d, %d)\n", r->map.x, r->map.y); //checking
 		}
-			
 	}
+}
+
+static void	catch_inter(t_rayc *r)
+{
+	r->inter.x = r->start.x + (r->dir.x * r->length);
+	r->inter.y = r->start.y + (r->dir.y * r->length);
+	printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
 }
 
 //	printf("intersection (%f, %f)\n", r->inter.x, r->inter.y);

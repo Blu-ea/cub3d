@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 11:39:34 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/04 07:32:56 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	pars_set_rotation(t_data *d)
 	if (d->pc.start_face == 'N')
 		d->pc.face_rad = M_PI / 2;
 	else if (d->pc.start_face == 'S')
-		d->pc.face_rad = -M_PI / 2;
+		d->pc.face_rad = 3 * M_PI / 2;
 	else if (d->pc.start_face == 'E')
 		d->pc.face_rad = 0;
 	else

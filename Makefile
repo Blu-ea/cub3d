@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/04 01:33:56 by amiguez          ###   ########.fr        #
+#    Updated: 2023/03/04 09:07:43 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,11 @@ OBJ_RENDER	:=	$(addprefix $(DIR_OBJS)/,$(LST_RENDER:.c=.o))
 RAYC		:=	ft_putwall.c\
 				cast_a_ray.c\
 				ray_tool.c\
+				ray_tool2.c\
 				dvect_tool.c\
 				ivect_tool.c\
-				rayc_debug.c
+				rayc_debug.c\
+				wall_slice.c
 DIR_RAYC	:=	raycasting
 LST_RAYC	:=	$(addprefix $(DIR_RAYC)/,$(RAYC))
 SRC_RAYC	:=	$(addprefix $(DIR_SRCS)/,$(LST_RAYC))

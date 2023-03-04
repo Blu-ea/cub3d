@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 15:22:18 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 09:06:48 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@
 // default background color to walls
 # define BLUE4 0x67E6D4
 
+// datas to draw each slice of wall
+typedef struct s_draw
+{
+	double	pwd; // perpendicular wall distance
+	int		sh; // slice height
 
+}				t_draw;
 
-
-
-typedef struct s_rayc {
+typedef struct s_rayc
+{
 	// Ray start (set equal to player position)
 	t_dvect		start;
 	t_ivect		map; // the current tile coordinate INT vector
@@ -42,7 +47,8 @@ typedef struct s_rayc {
 	// Unit Step Size
 	t_dvect		uss;
 
-	bool		hit; //was there a wall hit?
+	bool		hit; // was there a wall hit?
+	bool		inf; // does the player looking outside of map
 	bool		side; // was it a East or West wall
 	double		length; // length or ray, maybe not usefull (we don't need a maxlength yet in perform_dda)
 	t_dvect		inter; // intersection position : (maybe not needed) 
@@ -100,6 +106,11 @@ double	get_dir_x(double angle);
 double	get_dir_y(double angle);
 // double	get_delta_dir(double ray_dir_xy);
 void	get_unit_step(t_rayc *r);
+int		ft_is_wall(int x, int y, t_data *d);
+int		ft_inf_wall(t_rayc *r, t_data *d);
+
+// draw wall
+void	wall_slice(t_data *d, t_rayc *r);
 
 // debug
 void	print_rayc1(t_rayc *r);

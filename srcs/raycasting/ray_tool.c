@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 15:44:57 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 07:37:21 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double get_dir_x(double angle)
 // get vector direction y coordinate from an angle in radians
 double get_dir_y(double angle)
 {
-	return (sin(angle));
+	return (-sin(angle));
 }
 
 /*
