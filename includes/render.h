@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:03:38 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/02 19:39:37 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/04 09:02:42 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_render(t_data *d);
 
 void	ft_mini_map(t_data *d);
 int		mlx_in_bound(int x, int y);
+int		map_in_bound(int x, int y, t_data *d);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 

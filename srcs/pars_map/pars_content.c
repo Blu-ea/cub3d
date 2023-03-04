@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/01 05:55:48 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/04 01:35:42 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	pars_content(t_data *d)
 		else if (!ft_strncmp(&d->file.all[i], "C ", 2) && start_line(d, i))
 			i = add_color(d, C_, i + 2);
 		if (i == -1)
-			return (printf ("i = -1\n"), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 	}
 	if (pars_texture_f(d))
 		return (EXIT_FAILURE);
