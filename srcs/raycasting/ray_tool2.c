@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tool2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:02:47 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 09:14:50 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 11:39:47 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 int	ft_is_wall(int x, int y, t_data *d)
 {

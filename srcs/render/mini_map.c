@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 06:39:27 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/03 01:06:04 by amiguez          ###   ########.fr       */
+/*   Created: 2023/03/04 10:14:48 by amiguez           #+#    #+#             */
+/*   Updated: 2023/03/04 11:09:58 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	ft_mini_player(t_data *d);
 
 void	ft_mini_map(t_data *d)
 {
@@ -18,23 +20,37 @@ void	ft_mini_map(t_data *d)
 	int	y;
 
 	y = -1;
-	while (d->file.map[++y / 10])
+	while (d->file.map[++y / MAP_ZOOM])
 	{
 		x = -1;
-		while (d->file.map[y / 10][++x / 10])
+		while (d->file.map[y / MAP_ZOOM][++x / MAP_ZOOM])
 		{
-			if (d->file.map[y / 10][x / 10] == '0')
-				my_mlx_pixel_put(d, x, y, 0xffffff);
-			else if (d->file.map[y / 10][x / 10] == '1')
-				my_mlx_pixel_put(d, x, y, 0x000000);
-			if ((x < (d->pc._x * 10) + 3 && x > (d->pc._x * 10) - 3) \
-				&& y < (d->pc._y * 10) + 3 && y > (d->pc._y * 10) - 3)
-				my_mlx_pixel_put(d, x, y, 0xff0000);
-			if (x < (d->pc._x + cos(d->pc.face_rad)) * 10 + 2 \
-				&& x > (d->pc._x + cos(d->pc.face_rad)) * 10 - 2 \
-				&& y < (d->pc._y - sin(d->pc.face_rad)) * 10 + 2 \
-				&& y > (d->pc._y - sin(d->pc.face_rad)) * 10 - 2)
-				my_mlx_pixel_put(d, x, y, 0x00ff00);
+			if (d->file.map[y / MAP_ZOOM][x / MAP_ZOOM] == '0')
+				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xffffff);
+			else if (d->file.map[y / MAP_ZOOM][x / MAP_ZOOM] == '1')
+				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x000000);
 		}
+	}
+	ft_mini_player(d);
+}
+
+void	ft_mini_player(t_data *d)
+{
+	int	x;
+	int	y;
+
+	y = d->pc._y * MAP_ZOOM - MAP_ZOOM / 5;
+	while (++y < d->pc._y * MAP_ZOOM + MAP_ZOOM / 5)
+	{
+		x = d->pc._x * MAP_ZOOM - MAP_ZOOM / 5;
+		while (++x < d->pc._x * MAP_ZOOM + MAP_ZOOM / 5)
+			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xff0000);
+	}
+	y = (d->pc._y - sin(d->pc.face_rad)) * MAP_ZOOM - MAP_ZOOM / 8;
+	while (++y < (d->pc._y - sin(d->pc.face_rad)) * MAP_ZOOM + MAP_ZOOM / 8)
+	{
+		x = (d->pc._x + cos(d->pc.face_rad)) * MAP_ZOOM - MAP_ZOOM / 8;
+		while (++x < (d->pc._x + cos(d->pc.face_rad)) * MAP_ZOOM + MAP_ZOOM / 8)
+			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x00ff00);
 	}
 }

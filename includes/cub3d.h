@@ -33,6 +33,18 @@
 
 # include "../libft/includes/libft.h"
 
+# ifndef MAP_ZOOM
+#  define MAP_ZOOM 30
+# endif
+
+# ifndef MAP_OFFSETX
+#  define MAP_OFFSETX 100
+# endif
+
+# ifndef MAP_OFFSETY
+#  define MAP_OFFSETY 100
+# endif
+
 # define NO_ 0
 # define SO_ 1
 # define EA_ 2

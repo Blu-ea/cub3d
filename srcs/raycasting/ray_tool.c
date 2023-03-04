@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 11:17:29 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/04 11:42:39 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 static double	uss_formula(double top, double bot);
 
 // get vector direction x coordinate from an angle in radians
-double get_dir_x(double angle)
+double	get_dir_x(double angle)
 {
 	return (cos(angle));
 }
 
 // get vector direction y coordinate from an angle in radians
 // -1 * sinus because y axis is reverted in the pixel grid
-double get_dir_y(double angle)
+double	get_dir_y(double angle)
 {
 	return (-sin(angle));
 }
