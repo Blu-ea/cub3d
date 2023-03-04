@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:24:14 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 08:47:03 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/04 09:37:38 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	mlx_in_bound(int x, int y)
 
 int	map_in_bound(int x, int y, t_data *d)
 {
-	if (y > d->file.length || y < 0)
+	if (y >= d->file.length || y < 0)
 		return (0);
 	if (x > ft_strlen(d->file.map[y]) || x < 0)
 		return (0);
