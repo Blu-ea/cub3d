@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putwall.c                                       :+:      :+:    :+:   */
+/*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 10:09:24 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/06 10:51:38 by loumarti         ###   ########lyon.fr   */
+/*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
+/*   Updated: 2023/03/06 11:35:42 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_putwall(t_data *d)
-{
-	int	x;
+// void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
+// {
+// 	t_pixi	pixi;
 
-	x = 0;
-	while (x < S_WIDTH)
-	{
-		cast_a_ray(d, x);
-		x++;
-	}
+// 	pixi.card = get_cardinal(d, r);
 
-	// test en lancant un seul rayon tout droit
-	// cast_a_ray(d, S_WIDTH / 2);
+// 	// determiner la relation entre le pixel mur et le pixel buffer texture
 
-	// test en lancant un rayon non droit (eucli != perp)
-	// cast_a_ray(d, (S_WIDTH / 2) - 500);
-	
-	
+// 	// continuer ici
 
-}
+// }

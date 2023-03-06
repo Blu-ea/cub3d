@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_key.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:38:21 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/02 19:41:24 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/06 07:52:41 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_key(int key, t_data *data)
 		mlx_loop_end (d->mlx.ptr);
 	else if (key == K_W || key == K_S || key == K_A || key == K_D)
 		ft_move(key, d);
-	else if (key == K_LEFT || key == K_RIGHT)
+	else if (key == K_LEFT || key == K_RIGHT || key == K_E || key == K_Q)
 		ft_rotate(key, d);
 	return (0);
 }
