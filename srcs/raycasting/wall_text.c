@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   h_key.c                                            :+:      :+:    :+:   */
+/*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:38:21 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/06 07:52:41 by loumarti         ###   ########lyon.fr   */
+/*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
+/*   Updated: 2023/03/06 11:35:42 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_key(int key, t_data *data)
-{
-	t_data		*d;
+// void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
+// {
+// 	t_pixi	pixi;
 
-	d = data;
-	if (key == K_ESC)
-		mlx_loop_end (d->mlx.ptr);
-	else if (key == K_W || key == K_S || key == K_A || key == K_D)
-		ft_move(key, d);
-	else if (key == K_LEFT || key == K_RIGHT || key == K_E || key == K_Q)
-		ft_rotate(key, d);
-	return (0);
-}
+// 	pixi.card = get_cardinal(d, r);
+
+// 	// determiner la relation entre le pixel mur et le pixel buffer texture
+
+// 	// continuer ici
+
+// }

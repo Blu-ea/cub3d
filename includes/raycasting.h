@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 10:06:51 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/06 11:28:07 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,32 @@
 
 //the 2d raycaster version of camera plane
 # define PLANE_X 0
-# define PLANE_Y 0.66
+# define PLANE_Y 0.25
 
 // default background color to walls
-# define BLUE4 0x67E6D4
+# define NO_COL_0 0x67E6D4
+# define NO_COL_1 0x5CB5A8
+# define SO_COL_0 0x2a89a3
+# define SO_COL_1 0x2b7d94
+# define EA_COL_0 0x66eda5
+# define EA_COL_1 0x51c989
+# define WE_COL_0 0xffa754
+# define WE_COL_1 0xde9149
+
+
+
+// pixel info needed to put on walls
+typedef struct s_pixi
+{
+	int	x;
+	int	y;
+	int	card;
+}				t_pixi;
 
 // datas to draw each slice of wall
 typedef struct s_draw
 {
-	double	swd; // slice wall distance
+	double	pwd; // perp wall distance
 	int		sh; // slice wall height
 	int		start;
 	int		end;
@@ -41,8 +58,12 @@ typedef struct s_rayc
 	t_dvect		start;
 	t_ivect		map; // the current tile coordinate INT vector
 
-	//initial direction vector
-	t_dvect		dir;// [?] a passer direct dans data ?
+	//initial direction vector -> ray direction
+	t_dvect		dir;// [?] a passer direct dans data ?  non mais pour cam c peut etre bien
+	// => en dir du rayon
+	
+	// camera 
+	double		cam; // [?] avec lui ? (camera ne change que dans une direction, double suffit ici)
 
 	// scaling factor beetween hypotenuse
 	// and a step unit direction to x or y axis
@@ -62,57 +83,23 @@ typedef struct s_rayc
 	// needed by the DDA algorithm wich will chose the shorter
 	t_dvect		stockxy;
 
-	
-
-
-		// [?] a passer dans Data ? ou inutile pour notre loop ?
-	// double	time; //time of current frame
-	// double	old; //time of previous frame
-
-	//calculate ray position and direction
-	// double	cam_x;	//x-coordinate in camera space
-	// double	ray_dir_x;
-	// double	ray_dir_y;
-
-	//which box of the map we're in // remplacer par start
-	// t_ivect		map;
-	
-	// //length of ray from current position to next x or y-side
-	// double	sd_x;
-	// double	sd_y;
-	// // sd stand for "side dist"
-
-	// //length of ray from one x or y-side to next x or y-side
-	// double	dd_x;
-	// double	dd_y;
-	// // dd stand for "delta dist"
-	// double	perp_dist_wall;
-	
-
-	// int		side; //was a NS or a EW wall hit?
-
-	// //infos to draw a line
-	// int		l_h;
-	// int		start;
-	// int		end;
-	// int		color;
-
 } t_rayc;
 
-
+//raycasting
 void	ft_putwall(t_data *d);
 void	cast_a_ray(t_data *d, int x);
 
 // raycasting utilitaries
 double	get_dir_x(double angle);
 double	get_dir_y(double angle);
-// double	get_delta_dir(double ray_dir_xy);
 void	get_unit_step(t_rayc *r);
 int		ft_is_wall(int x, int y, t_data *d);
 int		ft_inf_wall(t_rayc *r, t_data *d);
 
 // draw wall
 void	wall_slice(t_data *d, t_rayc *r, int x);
+void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x);
+int		get_cardinal(t_data *d, t_rayc *r);
 
 // debug
 void	print_rayc1(t_rayc *r);
