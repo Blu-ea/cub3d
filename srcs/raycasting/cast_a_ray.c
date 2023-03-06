@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 11:14:56 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/06 06:59:59 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,18 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->map.x += r->step.x;
 			r->length = r->stockxy.x;
 			r->stockxy.x += r->uss.x;
-			r->side = false;
+			r->side = true;
 		}
 		else
 		{
 			r->map.y += r->step.y;
 			r->length = r->stockxy.y;
 			r->stockxy.y += r->uss.y;
-			r->side = true;
+			r->side = false;
 		}
-		printf("map cheking current :  tile(%d, %d) ", r->map.x, r->map.y); //checking
-		if (map_in_bound(r->map.x, r->map.y, d))
-			printf("= '%c'\n", d->file.map[r->map.y][r->map.x]); // checking
+		// printf("map cheking current :  tile(%d, %d) ", r->map.x, r->map.y); //checking
+		// if (map_in_bound(r->map.x, r->map.y, d)) // checking
+			// printf("= '%c'\n", d->file.map[r->map.y][r->map.x]); // checking
 	//Check if ray has hit a wall
 	// if (r->map.x >= 0 && r->map.x < S_WIDTH && r->map.y >= 0 && r->map.y < S_LENGTH) // dans le cas utilise distance
 		if (ft_is_wall(r->map.x, r->map.y, d))
@@ -124,5 +124,5 @@ static void	catch_inter(t_rayc *r)
 {
 	r->inter.x = r->start.x + (r->dir.x * r->length);
 	r->inter.y = r->start.y + (r->dir.y * r->length);
-	printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
+	printf("inter : (%f, %f) -- ray length : %f -- side : %d\n", r->inter.x, r->inter.y, r->length, r->side); //checking
 }

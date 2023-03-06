@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 10:06:51 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/06 06:31:35 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // datas to draw each slice of wall
 typedef struct s_draw
 {
-	double	swd; // slice wall distance
+	double	pwd; // perp wall distance
 	int		sh; // slice wall height
 	int		start;
 	int		end;
