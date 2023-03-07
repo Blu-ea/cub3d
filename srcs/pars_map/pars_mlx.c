@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:39:03 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 01:40:40 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/07 10:25:51 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int	ft_xpm_img(t_data *d)
 		if (width != height && d->txr.size != width && d->txr.size != 0)
 			return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
 	}
+
+	// desole je rajoutte ca ici, j'ai besoin que size soit different de 0.
+	// je te laisse remmettre en ordre le code a ta maniere ensuite, merci
+	if (width == height)
+		d->txr.size = width;
+
 	return (EXIT_SUCCESS);
 }
 

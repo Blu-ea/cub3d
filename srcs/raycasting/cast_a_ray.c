@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_a_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/06 16:21:15 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/07 09:37:41 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	init_rayc(t_data *d, t_rayc *r, int x)
 
 	r->dir = init_dvect(get_dir_x(d->pc.face_rad), get_dir_y(d->pc.face_rad));
 		// ensuite utiliser x ici pour deduire la direction du rayon
-		//a partir de la direction du player
+		// a partir de la direction du player
 	r->dir.x += PLANE_X * r->cam;
 	r->dir.y += PLANE_Y * r->cam;
 
@@ -116,5 +116,5 @@ static void	catch_inter(t_rayc *r)
 {
 	r->inter.x = r->start.x + (r->dir.x * r->length);
 	r->inter.y = r->start.y + (r->dir.y * r->length);
-	printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
+	// printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
 }
