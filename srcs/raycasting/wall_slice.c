@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:37:11 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/06 11:26:04 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/07 15:37:19 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	wall_slice(t_data *d, t_rayc *r, int x)
 	t_draw	draw;
 
 	init_draw(r, &draw);
-	// if ghostmode
-	draw_the_slice(d, r, &draw, x);
-
-	// sinon
-	// wall_text() ... 
+	if (!d->ghost) /*ghostmode*/ // (inverse avec ! car drawtext segfault ...)
+		draw_the_slice(d, r, &draw, x);
+	else
+		draw_the_text(d, r, &draw, x); 
 }
 
 // Calculate the perpendicular wall distance (pwd) to determine the slice height (sh)
@@ -39,7 +38,6 @@ static void	init_draw(t_rayc *r, t_draw *w)
 	else
 		w->pwd = r->stockxy.y - r->uss.y;
 		
-	// printf("perp wall distance : %f ---> height : %d\n", w->pwd, w->sh);//checking
 
 
 	w->sh = (int)(S_LENGTH / w->pwd);
@@ -50,6 +48,8 @@ static void	init_draw(t_rayc *r, t_draw *w)
 	if (w->end >= S_LENGTH)
 		w->end = S_LENGTH - 1;
 	
+
+	// printf("perp wall distance : %f ---> height : %d\n", w->pwd, w->sh);//checking
 	// printf("slice from %d to %d ( %d px)\n", w->start, w->end, w->end - w->start); // checking
 }
 

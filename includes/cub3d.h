@@ -164,6 +164,7 @@ typedef struct s_data
 	t_player	pc;
 	t_mlx_d		mlx;
 	t_new_image	n_image;
+	bool		ghost;// j'ajoutte ici pour le moment mais tu peux modifier
 }	t_data;
 
 #endif
