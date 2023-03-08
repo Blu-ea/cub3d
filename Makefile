@@ -6,7 +6,7 @@
 #    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/07 15:30:57 by loumarti         ###   ########lyon.fr    #
+#    Updated: 2023/03/08 08:29:04 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
 # -include $(DEPH)
 # ############################################################################ #
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address
 # ############################################################################ #
 NORMITEST = 
 NORMINETTE = $(shell norminette $(SRCS) | grep -i 'Error!')

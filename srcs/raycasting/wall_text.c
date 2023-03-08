@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/08 09:28:00 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/08 10:43:04 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int		get_pixel_color(t_new_image img, t_ivect *pos);
 static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi);
+static void		adjust_tile_y(t_data *d, t_draw *w, int pixiy, t_ivect *ti);
 
 void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
 {
@@ -23,17 +24,19 @@ void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
 
 	pixi.x = x;
 	pixi.card = get_cardinal(d, r);
-	printf("cardinal = %d\n", pixi.card); //checking
+	// printf("cardinal = %d\n", pixi.card); //checking
 	pixi.y = w->start;
 
 	ti = get_tile_index(d, r, w, &pixi);
-	printf("tile index : (%d , %d)\n", ti.x, ti.y); //checking
+	// printf("tile index : (%d , %d)\n", ti.x, ti.y); //checking
 
 	while (pixi.y <= w->end)
 	{
+		// printf("REAL snip at point(%d, %d)\n", ti.x, ti.y); //checking
 		snip = get_pixel_color(d->txr.wall[pixi.card], &ti);
 		my_mlx_pixel_put(d, pixi.x, pixi.y, snip);
 		pixi.y++;
+		adjust_tile_y(d, w, pixi.y, &ti);
 	}
 }
 
@@ -51,10 +54,15 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 	else
 		wip = r->inter.x - (int)r->inter.x;
 	ti.x = (int)((double)d->txr.size * wip);
-	printf("pixi->y : %d  |  d->txr.size : %d  | height : %d\n", pixi->y, d->txr.size, w->sh);
+	// printf("pixi->y : %d  |  d->txr.size : %d  | height : %d\n", pixi->y, d->txr.size, w->sh);
 
 	ti.y = ((pixi->y - w->start) * d->txr.size) / height;
 	return (ti);
+}
+
+static void	adjust_tile_y(t_data *d, t_draw *w, int pixiy, t_ivect *ti)
+{
+	ti->y = ((pixiy - w->start) * d->txr.size) / (w->end - w->start);
 }
 
 static int	get_pixel_color(t_new_image img, t_ivect *pos)
