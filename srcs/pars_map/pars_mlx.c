@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:39:03 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/08 09:27:17 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/08 10:58:26 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_xpm_img(t_data *d)
 	while (++i < 4)
 	{
 		d->txr.wall[i].img = mlx_xpm_file_to_image \
-			(d->mlx.ptr, d->txr.path[0], &width, &height);
+			(d->mlx.ptr, d->txr.path[i], &width, &height);
 		if (!d->txr.wall[i].img)
 			return (d->err_code = XPM_IMAGE_FAILED, EXIT_FAILURE);
 		if (width != height)

@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/08 10:43:04 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 11:43:59 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
 
 	pixi.x = x;
 	pixi.card = get_cardinal(d, r);
-	// printf("cardinal = %d\n", pixi.card); //checking
+	// printf("cardinal = %d -- %s\n", pixi.card, d->txr.path[pixi.card]); //checking
 	pixi.y = w->start;
 
 	ti = get_tile_index(d, r, w, &pixi);
