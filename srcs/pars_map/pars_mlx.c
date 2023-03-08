@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:39:03 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/07 10:25:51 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 09:27:17 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,22 @@ int	ft_xpm_img(t_data *d)
 	i = -1;
 	while (++i < 4)
 	{
-		d->txr._face[i] = mlx_xpm_file_to_image \
+		d->txr.wall[i].img = mlx_xpm_file_to_image \
 			(d->mlx.ptr, d->txr.path[0], &width, &height);
-		if (!d->txr._face[i])
+		if (!d->txr.wall[i].img)
 			return (d->err_code = XPM_IMAGE_FAILED, EXIT_FAILURE);
-		if (width != height && d->txr.size != width && d->txr.size != 0)
+		if (width != height)
 			return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
+		d->txr.wall[i].size = width;
+		d->txr.wall[i].addr = mlx_get_data_addr(d->txr.wall[i].img, \
+			&d->txr.wall[i].bit_per_pixel, \
+			&d->txr.wall[i].line_length, &d->txr.wall[i].endian);
 	}
-
-	// desole je rajoutte ca ici, j'ai besoin que size soit different de 0.
-	// je te laisse remmettre en ordre le code a ta maniere ensuite, merci
-	if (width == height)
-		d->txr.size = width;
-
+	if (d->txr.wall[0].size != d->txr.wall[1].size || \
+			d->txr.wall[0].size != d->txr.wall[2].size || \
+			d->txr.wall[0].size != d->txr.wall[3].size)
+		return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
+	d->txr.size = d->txr.wall[0].size;
 	return (EXIT_SUCCESS);
 }
 

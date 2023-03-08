@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/07 15:35:54 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 09:28:00 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		get_pixel_color(t_new_image *img, t_ivect *pos);
+static int		get_pixel_color(t_new_image img, t_ivect *pos);
 static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi);
 
 void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
@@ -31,7 +31,7 @@ void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
 
 	while (pixi.y <= w->end)
 	{
-		snip = get_pixel_color(d->txr._face[pixi.card], &ti);
+		snip = get_pixel_color(d->txr.wall[pixi.card], &ti);
 		my_mlx_pixel_put(d, pixi.x, pixi.y, snip);
 		pixi.y++;
 	}
@@ -57,12 +57,12 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 	return (ti);
 }
 
-static int	get_pixel_color(t_new_image *img, t_ivect *pos)
+static int	get_pixel_color(t_new_image img, t_ivect *pos)
 {
 	char	*char_color;
 	int		*color;
 
-	char_color = img->addr + (pos->y * img->line_length) + (pos->x * img->bit_per_pixel / 8);
+	char_color = img.addr + (pos->y * img.line_length) + (pos->x * img.bit_per_pixel / 8);
 	color = (int *)char_color;
 
 	return (*color);

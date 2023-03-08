@@ -53,7 +53,7 @@
 # define F_ 0
 # define C_ 1
 	// WIDTH IS DEFINE FOR X
-# define S_WIDTH 1900 
+# define S_WIDTH 1900
 	// LENGTH IS DEFINE FOR Y
 # define S_LENGTH 1700
 
@@ -98,16 +98,29 @@ typedef union u_color
 	int		i_v;
 }	t_color;
 
+	/**** Need to destroy ***/
+	/*			img			*/
+	/************************/
+typedef struct s_new_image
+{
+	void	*img;
+	char	*addr;
+	int		endian;
+	int		bit_per_pixel;
+	int		line_length;
+	int		size;
+}	t_new_image;
+
 	/**** To free *****/
 	/* path  0 to 4   */
 	/* _face 0 to 4   */
 	/******************/
 typedef struct s_textures
 {
-	t_color	plan[2];
-	char	*path[4];
-	void	*_face[4];
-	int		size;
+	t_color		plan[2];
+	char		*path[4];
+	t_new_image	wall[4];
+	int			size;
 }	t_textures;
 
 typedef struct s_player_info
@@ -144,18 +157,6 @@ typedef struct s_mlx_data
 	void	*win;
 }	t_mlx_d;
 
-	/**** Need to destroy ***/
-	/*			img			*/
-	/************************/
-typedef struct s_new_image
-{
-	void	*img;
-	char	*addr;
-	int		endian;
-	int		bit_per_pixel;
-	int		line_length;
-}	t_new_image;
-
 typedef struct s_data
 {
 	t_file		file;
@@ -164,7 +165,7 @@ typedef struct s_data
 	t_player	pc;
 	t_mlx_d		mlx;
 	t_new_image	n_image;
-	bool		ghost;// j'ajoutte ici pour le moment mais tu peux modifier
+	bool		ghost;
 }	t_data;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_slice.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:37:11 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/07 15:37:19 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 09:20:16 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	wall_slice(t_data *d, t_rayc *r, int x)
 	if (!d->ghost) /*ghostmode*/ // (inverse avec ! car drawtext segfault ...)
 		draw_the_slice(d, r, &draw, x);
 	else
-		draw_the_text(d, r, &draw, x); 
+		draw_the_text(d, r, &draw, x);
 }
 
 // Calculate the perpendicular wall distance (pwd) to determine the slice height (sh)
