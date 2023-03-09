@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:37:11 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/08 09:50:16 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 10:06:41 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	wall_slice(t_data *d, t_rayc *r, int x)
 	t_draw	draw;
 
 	init_draw(r, &draw);
-	if (d->ghost) /*ghostmode*/ // (inverse avec ! car drawtext segfault ...)
+	if (d->ghost) /*ghostmode*/ // ('!' si on veut switch en debug)
 		draw_the_slice(d, r, &draw, x);
 	else
 		draw_the_text(d, r, &draw, x);

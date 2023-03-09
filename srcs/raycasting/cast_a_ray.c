@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_a_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 05:20:32 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/09 10:15:15 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	cast_a_ray(t_data *d, int x)
 	if (rayc.hit == true) // voir aussi ici le cas inf ?
 	{
 		catch_inter(&rayc);
+		// if (x == S_LENGTH / 2) //checking
+			// printf("mid ray inter : (%f, %f)\n", rayc.inter.x, rayc.inter.y); //checking
 		wall_slice(d, &rayc, x);
 	}
 }
