@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/06 11:28:07 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 14:07:46 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_rayc
 
 	bool		hit; // was there a wall hit?
 	bool		inf; // does the player looking outside of map
-	bool		side; // was it a East or West wall
+	bool		side; // was it a SN(false) or EW(true) wall
 	double		length; // length or ray, maybe not usefull (we don't need a maxlength yet in perform_dda)
 	t_dvect		inter; // intersection position : (maybe not needed) 
 
