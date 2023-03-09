@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:09:24 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 09:43:33 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 15:18:06 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_putwall(t_data *d)
 		cast_a_ray(d, x);
 		x++;
 	}
+
+	// printf("\n\n");
 
 	// test en lancant un seul rayon tout droit
 	// cast_a_ray(d, S_WIDTH / 2);

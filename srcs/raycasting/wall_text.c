@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 14:11:30 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:50:42 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,28 @@ static void		adjust_tile_y(t_data *d, t_draw *w, int pixiy, t_ivect *ti);
 
 void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x)
 {
-	t_ivect	ti;	//texture tile index in x-axis
+	t_ivect	ti;	//texture tile index in x-axis and y-axis
 	t_pixi	pixi; //le pixel a print
 	int		snip; //l'echantillon de couleur collecte dans le buffer de la tile
+	int		offset; // y offset if zoom
 
 	pixi.x = x;
 	pixi.card = get_cardinal(d, r);
 	// printf("cardinal = %d -- %s\n", pixi.card, d->txr.path[pixi.card]); //checking
-	pixi.y = w->start;
+	
+	offset = 0;
+	if (w->sh > S_LENGTH)
+		offset = (w->sh - S_LENGTH) / 2;
+	pixi.y = w->start + offset;
 
 	ti = get_tile_index(d, r, w, &pixi);
 	// printf("tile index : (%d , %d)\n", ti.x, ti.y); //checking
 
-	while (pixi.y <= w->end)
+	while (pixi.y - offset <= w->end)
 	{
 		// printf("snip at point(%d, %d)\n", ti.x, ti.y); //checking
 		snip = get_pixel_color(d->txr.wall[pixi.card], &ti);
-		my_mlx_pixel_put(d, pixi.x, pixi.y, snip);
+		my_mlx_pixel_put(d, pixi.x, pixi.y - offset, snip);
 		pixi.y++;
 		adjust_tile_y(d, w, pixi.y, &ti);
 	}
@@ -49,10 +54,11 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 	int		height; //slice height
 
 	height =  w->sh; //w->end - w->start;
-	if (r->side)
-		wip = fmod(r->inter.x , 1);
+	if (r->side == false)
+		wip = fabs(fmod(r->inter.x , 1));
 	else
-		wip = fmod(r->inter.y , 1);
+		wip = fabs(fmod(r->inter.y , 1));
+
 	ti.x = (int)((double)d->txr.size * wip);
 	// printf("pixi->y : %d  |  d->txr.size : %d  | height : %d\n", pixi->y, d->txr.size, w->sh);
 
