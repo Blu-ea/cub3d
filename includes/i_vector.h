@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_vector.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 09:51:38 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 10:22:20 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 18:34:28 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_ivect {
 }			t_ivect;
 
 t_ivect	init_ivect(int x, int y);
+t_ivect	init_ivect_d(double x, double y);
 
 #endif
 

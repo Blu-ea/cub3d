@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_a_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 14:23:33 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 19:11:53 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	cast_a_ray(t_data *d, int x)
 static void	init_rayc(t_data *d, t_rayc *r, int x)
 {
 	r->start = init_dvect(d->pc._x, d->pc._y);
-	r->map = init_ivect((int)d->pc._x, (int)d->pc._y);
-	r->cam =  2 * x / (double)S_WIDTH - 1;
+	r->map = init_ivect_d(d->pc._x, d->pc._y);
+	r->cam = 2 * x / (double)S_WIDTH - 1;
 
 	r->dir = init_dvect(d->pc.dir.x, d->pc.dir.y);
 		// ensuite utiliser x ici pour deduire la direction du rayon
@@ -49,9 +49,7 @@ static void	init_rayc(t_data *d, t_rayc *r, int x)
 	r->hit = false;
 	r->side = false;
 	r->length = 0.0;
-	
-	// print_rayc1(r);	// checking values :
-	
+
 }
 
 // starting values -> get distance from player to x and y collision
@@ -61,22 +59,22 @@ static void	get_stockxy_step(t_rayc *r)
 	if (r->dir.x < 0)
 	{
 		r->step.x = -1;
-		r->stockxy.x = (r->start.x - (double)r->map.x) * r->uss.x;
+		r->stockxy.x = (r->start.x - r->map.x) * r->uss.x;
 	}
 	else
 	{
 		r->step.x = 1;
-		r->stockxy.x = ((double)r->map.x + 1.0 - r->start.x) * r->uss.x;
+		r->stockxy.x = (r->map.x + 1.0 - r->start.x) * r->uss.x;
 	}
 	if (r->dir.y < 0)
 	{
 		r->step.y = -1;
-		r->stockxy.y = (r->start.y - (double)r->map.y) * r->uss.y;
+		r->stockxy.y = (r->start.y - r->map.y) * r->uss.y;
 	}
 	else
 	{
 		r->step.y = 1;
-		r->stockxy.y = ((double)r->map.y + 1.0 - r->start.y) * r->uss.y;
+		r->stockxy.y = (r->map.y + 1.0 - r->start.y) * r->uss.y;
 	}
 }
 
@@ -112,7 +110,7 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			// printf("hit calculated with tile(%d, %d)\n", r->map.x, r->map.y); //checking
 		}
 		// else
-		// 	my_mlx_pixel_put(d, r->map.x, r->map.y, 0x0000ff); // To see wich block is check
+			// my_mlx_pixel_put(d, r->map.x * MAP_ZOOM + MAP_OFFSETX, r->map.y * MAP_ZOOM + MAP_OFFSETY, 0x0000ff); // To see wich block is check
 	}
 }
 

@@ -34,7 +34,7 @@
 # include "../libft/includes/libft.h"
 
 # ifndef MAP_ZOOM
-#  define MAP_ZOOM 30 // size of 1x1 block on the minimap
+#  define MAP_ZOOM 15 // size of 1x1 block on the minimap
 # endif
 
 # ifndef MAP_OFFSETX
