@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 10:45:33 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 14:11:30 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 
 	height =  w->sh; //w->end - w->start;
 	if (r->side)
-		wip = fabs(r->inter.y - (int)r->inter.y);
+		wip = fmod(r->inter.x , 1);
 	else
-		wip = fabs(r->inter.x - (int)r->inter.x);
+		wip = fmod(r->inter.y , 1);
 	ti.x = (int)((double)d->txr.size * wip);
 	// printf("pixi->y : %d  |  d->txr.size : %d  | height : %d\n", pixi->y, d->txr.size, w->sh);
 

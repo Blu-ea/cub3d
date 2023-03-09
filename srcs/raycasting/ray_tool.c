@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/04 11:42:39 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/09 13:51:09 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ static double	uss_formula(double top, double bot)
 	// }
 	// else
 	// 	return ()
-		return(sqrt(1 + (top / bot) * (top / bot)));
+		return(sqrt(1 + (top * top) / (bot * bot)));
 }
