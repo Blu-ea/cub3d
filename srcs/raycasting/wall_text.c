@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:25:47 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 10:08:49 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 10:45:33 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 	t_ivect		ti; //tile index
 	int		height; //slice height
 
-	height = w->end - w->start;
+	height =  w->sh; //w->end - w->start;
 	if (r->side)
 		wip = fabs(r->inter.y - (int)r->inter.y);
 	else
@@ -62,7 +62,7 @@ static t_ivect	get_tile_index(t_data *d, t_rayc *r, t_draw *w, t_pixi *pixi)
 
 static void	adjust_tile_y(t_data *d, t_draw *w, int pixiy, t_ivect *ti)
 {
-	ti->y = ((pixiy - w->start) * d->txr.size) / abs(w->end - w->start);
+	ti->y = ((pixiy - w->start) * d->txr.size) / abs(w->sh);
 }
 
 static int	get_pixel_color(t_new_image img, t_ivect *pos)
