@@ -34,15 +34,19 @@
 # include "../libft/includes/libft.h"
 
 # ifndef MAP_ZOOM
-#  define MAP_ZOOM 30
+#  define MAP_ZOOM 30 // size of 1x1 block on the minimap
 # endif
 
 # ifndef MAP_OFFSETX
-#  define MAP_OFFSETX 100
+#  define MAP_OFFSETX 100 //offset in pixel
 # endif
 
 # ifndef MAP_OFFSETY
-#  define MAP_OFFSETY 100
+#  define MAP_OFFSETY 100 //offset in pixel
+# endif
+
+# ifndef ROT
+#  define ROT 2 // rotation speed
 # endif
 
 # define NO_ 0
@@ -128,8 +132,8 @@ typedef struct s_player_info
 	double	_x;
 	double	_y;
 
-	double	face_rad;
-	double	face_deg;
+	t_dvect	plane;
+	t_dvect	dir;
 
 	char	start_face;
 }	t_player;

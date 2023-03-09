@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 07:32:56 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 05:45:05 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,26 @@ int	pars_map_border(char **map, int i, int j, t_data *d)
 
 void	pars_set_rotation(t_data *d)
 {
+	double	rad;
+
+	rad = M_PI;
 	if (d->pc.start_face == 'N')
-		d->pc.face_rad = M_PI / 2;
-	else if (d->pc.start_face == 'S')
-		d->pc.face_rad = 3 * M_PI / 2;
-	else if (d->pc.start_face == 'E')
-		d->pc.face_rad = 0;
-	else
-		d->pc.face_rad = M_PI;
-	d->pc.face_deg = d->pc.face_rad * (180.0 / M_PI);
+		rad = M_PI / 2;
+	if (d->pc.start_face == 'S')
+		rad = 3 * M_PI / 2;
+	if (d->pc.start_face == 'E')
+		rad = 0;
+	d->pc.dir.x = cos(rad);
+	d->pc.dir.y = -sin(rad);
+	d->pc.plane.x = 0;
+	d->pc.plane.y = 0;
+	if (d->pc.start_face == 'N' || d->pc.start_face == 'S')
+		d->pc.plane.x = .66;
+	if (d->pc.start_face == 'W' || d->pc.start_face == 'E')
+		d->pc.plane.y = .66;
+	if (d->pc.start_face == 'W' || d->pc.start_face == 'S')
+	{
+		d->pc.plane.x *= -1;
+		d->pc.plane.y *= -1;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_a_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/07 15:36:22 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/09 05:20:32 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void	init_rayc(t_data *d, t_rayc *r, int x)
 	r->map = init_ivect((int)d->pc._x, (int)d->pc._y);
 	r->cam =  2 * x / (double)S_WIDTH - 1;
 
-	r->dir = init_dvect(get_dir_x(d->pc.face_rad), get_dir_y(d->pc.face_rad));
+	r->dir = init_dvect(d->pc.dir.x, d->pc.dir.y);
 		// ensuite utiliser x ici pour deduire la direction du rayon
 		// a partir de la direction du player
-	r->dir.x += PLANE_X * r->cam;
-	r->dir.y += PLANE_Y * r->cam;
+	r->dir.x += d->pc.plane.x * r->cam;
+	r->dir.y += d->pc.plane.y * r->cam;
 
 	get_unit_step(r);
 	r->hit = false;
@@ -109,6 +109,8 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->hit = true;
 			// printf("hit calculated with tile(%d, %d)\n", r->map.x, r->map.y); //checking
 		}
+		// else
+		// 	my_mlx_pixel_put(d, r->map.x, r->map.y, 0x0000ff); // To see wich block is check
 	}
 }
 
