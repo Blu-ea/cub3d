@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/04 01:35:42 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:06:36 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	add_texture(t_data *d, int face, int i)
 	d->txr.path[face] = ft_strndup(&d->file.all[i], j - i);
 	if (!d->txr.path[face])
 		return (-1);
-	return (j);
+	return (j - 1);
 }
 
 int	pars_texture_f(t_data *d)
@@ -130,5 +130,5 @@ int	pars_color_f(t_data *d, char **src, int ret)
 				d->err_code = NOT_VALID_COLOR, -1);
 		free(cmp);
 	}
-	return (ft_free_2d_array(src), ret);
+	return (ft_free_2d_array(src), ret - 1);
 }
