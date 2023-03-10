@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:03:04 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/07 10:15:23 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 14:45:19 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int	ft_render(t_data *data)
 				my_mlx_pixel_put(d, x, y, (int)d->txr.plan[F_].i_v);
 		}
 	}
-
-	// Loup se greffe ici
 	ft_putwall(d);
-
-	ft_putcrossair(d); // moi jaime bien ta croix
-
+	ft_putcrossair(d);
 	x = 0;
 	y = 0;
 	ft_mini_map(d);

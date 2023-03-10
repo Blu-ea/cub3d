@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 14:46:44 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,14 @@ void	cast_a_ray(t_data *d, int x, bool action)
 	init_rayc(d, &rayc, x);
 	get_stockxy_step(&rayc);
 	perform_dda(d, &rayc);
-
-	// Action part raycasting ie : open a door
 	if (action && rayc.hit == true)
 	{
 		catch_inter(&rayc);
 		action_door(d, &rayc);
 	}
-
-	// Wall part raycasting
 	else if (!action && rayc.hit == true)
 	{
 		catch_inter(&rayc);
-		// if (x == S_LENGTH / 2) //checking
-			// printf("mid ray inter : (%f, %f)\n", rayc.inter.x, rayc.inter.y); //checking
 		wall_slice(d, &rayc, x);
 	}
 }
@@ -47,18 +41,13 @@ static void	init_rayc(t_data *d, t_rayc *r, int x)
 	r->start = init_dvect(d->pc._x, d->pc._y);
 	r->map = init_ivect_d(d->pc._x, d->pc._y);
 	r->cam = 2 * x / (double)S_WIDTH - 1;
-
 	r->dir = init_dvect(d->pc.dir.x, d->pc.dir.y);
-		// ensuite utiliser x ici pour deduire la direction du rayon
-		// a partir de la direction du player
 	r->dir.x += d->pc.pln.x * r->cam;
 	r->dir.y += d->pc.pln.y * r->cam;
-
 	get_unit_step(r);
 	r->hit = false;
 	r->side = false;
 	r->length = 0.0;
-
 }
 
 // starting values -> get distance from player to x and y collision
@@ -93,7 +82,6 @@ static void	perform_dda(t_data *d, t_rayc *r)
 {
 	while (ft_inf_wall(r, d))
 	{
-		//jump to next map square, either in x-direction, or in y-direction
 		if (r->stockxy.x < r->stockxy.y)
 		{
 			r->map.x += r->step.x;
@@ -108,18 +96,10 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->stockxy.y += r->uss.y;
 			r->side = false;
 		}
-		// printf("map cheking current :  tile(%d, %d) ", r->map.x, r->map.y); //checking
-		// if (map_in_bound(r->map.x, r->map.y, d)) // checking
-			// printf("= '%c'\n", d->file.map[r->map.y][r->map.x]); // checking
-	//Check if ray has hit a wall
-	// if (r->map.x >= 0 && r->map.x < S_WIDTH && r->map.y >= 0 && r->map.y < S_LENGTH) // dans le cas utilise distance
 		if (ft_is_wall(r->map.x, r->map.y, d))
 		{
 			r->hit = true;
-			// printf("hit calculated with tile(%d, %d)\n", r->map.x, r->map.y); //checking
 		}
-		// else
-			// my_mlx_pixel_put(d, r->map.x * MAP_ZOOM + MAP_OFFSETX, r->map.y * MAP_ZOOM + MAP_OFFSETY, 0x0000ff); // To see wich block is check
 	}
 }
 
@@ -127,5 +107,4 @@ static void	catch_inter(t_rayc *r)
 {
 	r->inter.x = r->start.x + (r->dir.x * r->length);
 	r->inter.y = r->start.y + (r->dir.y * r->length);
-	// printf("intersection : (%f, %f)\n", r->inter.x, r->inter.y); //checking
 }

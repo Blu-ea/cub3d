@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:40:53 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 19:20:05 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:48:34 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ double	get_dir_y(double angle)
 	return (-sin(angle));
 }
 
-/*
-	get delta direction coordinates
-	parameter is x or y value form ray_dir
-	To avoid a division by 0, return a high number instead
-*/
-// double get_delta_dir(double ray_dir_xy)
-// {
-// 	if (ray_dir_xy == 0)
-// 		return (1e30);
-// 	else
-// 	{
-// 		return (abs(1 / ray_dir_xy));
-// 	}
-// }
-
 // using Phytagore to calculate  Unit Step Size wich is 
 // the scaling factor beetween hypotenuse and a 
 // step unit direction to x or y axis
@@ -54,18 +39,7 @@ void	get_unit_step(t_rayc *r)
 
 static double	uss_formula(double i)
 {
-	// //Can't print this
-	// if ((int)bot == 0)
-	// {
-	// 	printf("ckecking : division par 0.0\n");
-	// 	return (1e30);
-	// }
-	// else
-	// 	return ()
-	// if (top == 0)
-	// 	return (1e30);
 	if (i < 0)
 		return (1 / -i);
 	return (1 / i);
-		// return(sqrt(1 + (top * top) / (bot * bot)));
 }
