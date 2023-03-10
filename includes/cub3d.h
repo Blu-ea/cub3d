@@ -132,7 +132,7 @@ typedef struct s_player_info
 	double	_x;
 	double	_y;
 
-	t_dvect	plane;
+	t_dvect	pln;
 	t_dvect	dir;
 
 	char	start_face;

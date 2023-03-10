@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/09 05:45:05 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,15 +116,15 @@ void	pars_set_rotation(t_data *d)
 		rad = 0;
 	d->pc.dir.x = cos(rad);
 	d->pc.dir.y = -sin(rad);
-	d->pc.plane.x = 0;
-	d->pc.plane.y = 0;
+	d->pc.pln.x = 0;
+	d->pc.pln.y = 0;
 	if (d->pc.start_face == 'N' || d->pc.start_face == 'S')
-		d->pc.plane.x = .66;
+		d->pc.pln.x = .66;
 	if (d->pc.start_face == 'W' || d->pc.start_face == 'E')
-		d->pc.plane.y = .66;
+		d->pc.pln.y = .66;
 	if (d->pc.start_face == 'W' || d->pc.start_face == 'S')
 	{
-		d->pc.plane.x *= -1;
-		d->pc.plane.y *= -1;
+		d->pc.pln.x *= -1;
+		d->pc.pln.y *= -1;
 	}
 }

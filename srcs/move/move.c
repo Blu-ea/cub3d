@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 10:41:55 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_move(int key, t_data *d)
 
 void	ft_rotate(int key, t_data *d)
 {
-	double	oldplanex;
+	double	oldplnx;
 	double	olddirx;
 	double	rot;
 
@@ -48,17 +48,17 @@ void	ft_rotate(int key, t_data *d)
 		olddirx = d->pc.dir.x;
 		d->pc.dir.x = d->pc.dir.x * cos(-rot) - d->pc.dir.y * sin(-rot);
 		d->pc.dir.y = olddirx * sin(-rot) + d->pc.dir.y * cos(-rot);
-		oldplanex = d->pc.plane.x;
-		d->pc.plane.x = d->pc.plane.x * cos(-rot) - d->pc.plane.y * sin(-rot);
-		d->pc.plane.y = oldplanex * sin(-rot) + d->pc.plane.y * cos(-rot);
+		oldplnx = d->pc.pln.x;
+		d->pc.pln.x = d->pc.pln.x * cos(-rot) - d->pc.pln.y * sin(-rot);
+		d->pc.pln.y = oldplnx * sin(-rot) + d->pc.pln.y * cos(-rot);
 	}
 	if (key == K_RIGHT || key == K_E)
 	{
 		olddirx = d->pc.dir.x;
 		d->pc.dir.x = d->pc.dir.x * cos(rot) - d->pc.dir.y * sin(rot);
 		d->pc.dir.y = olddirx * sin(rot) + d->pc.dir.y * cos(rot);
-		oldplanex = d->pc.plane.x;
-		d->pc.plane.x = d->pc.plane.x * cos(rot) - d->pc.plane.y * sin(rot);
-		d->pc.plane.y = oldplanex * sin(rot) + d->pc.plane.y * cos(rot);
+		oldplnx = d->pc.pln.x;
+		d->pc.pln.x = d->pc.pln.x * cos(rot) - d->pc.pln.y * sin(rot);
+		d->pc.pln.y = oldplnx * sin(rot) + d->pc.pln.y * cos(rot);
 	}
 }

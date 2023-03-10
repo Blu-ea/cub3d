@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 08:55:53 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	init_rayc(t_data *d, t_rayc *r, int x)
 	r->dir = init_dvect(d->pc.dir.x, d->pc.dir.y);
 		// ensuite utiliser x ici pour deduire la direction du rayon
 		// a partir de la direction du player
-	r->dir.x += d->pc.plane.x * r->cam;
-	r->dir.y += d->pc.plane.y * r->cam;
+	r->dir.x += d->pc.pln.x * r->cam;
+	r->dir.y += d->pc.pln.y * r->cam;
 
 	get_unit_step(r);
 	r->hit = false;
