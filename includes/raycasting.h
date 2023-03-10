@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 15:31:06 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 09:00:53 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include "i_vector.h"
 # include <stdbool.h>
 
-//the 2d raycaster version of camera plane
-# define PLANE_X 0
-# define PLANE_Y 0.25
+//the range an action can be done, like open a door
+# define ACTION_RANGE 1.5
 
 // default background color to walls
 # define NO_COL_0 0x67E6D4
@@ -85,9 +84,9 @@ typedef struct s_rayc
 
 } t_rayc;
 
-//raycasting
+// raycasting
 void	ft_putwall(t_data *d);
-void	cast_a_ray(t_data *d, int x);
+void	cast_a_ray(t_data *d, int x, bool action);
 
 // raycasting utilitaries
 double	get_dir_x(double angle);
@@ -100,6 +99,9 @@ int		ft_inf_wall(t_rayc *r, t_data *d);
 void	wall_slice(t_data *d, t_rayc *r, int x);
 void	draw_the_text(t_data *d, t_rayc *r, t_draw *w, int x);
 int		get_cardinal(t_data *d, t_rayc *r);
+
+// actions
+void	action_door(t_data *d, t_rayc *r);
 
 // debug
 void	print_rayc1(t_rayc *r);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_a_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 19:11:53 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/10 08:55:53 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,23 @@ static void	get_stockxy_step(t_rayc *r);
 static void	perform_dda(t_data *d, t_rayc *r);
 static void	catch_inter(t_rayc *r);
 
-void	cast_a_ray(t_data *d, int x)
+void	cast_a_ray(t_data *d, int x, bool action)
 {
 	t_rayc	rayc;
 
 	init_rayc(d, &rayc, x);
 	get_stockxy_step(&rayc);
 	perform_dda(d, &rayc);
-	if (rayc.hit == true) // voir aussi ici le cas inf ?
+
+	// Action part raycasting ie : open a door
+	if (action && rayc.hit == true)
+	{
+		catch_inter(&rayc);
+		action_door(d, &rayc);
+	}
+
+	// Wall part raycasting
+	else if (!action && rayc.hit == true)
 	{
 		catch_inter(&rayc);
 		// if (x == S_LENGTH / 2) //checking

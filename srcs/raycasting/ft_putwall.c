@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putwall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:09:24 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/09 18:19:38 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/10 08:30:03 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	ft_putwall(t_data *d)
 	x = 0;
 	while (x < S_WIDTH)
 	{
-		cast_a_ray(d, x);
+		cast_a_ray(d, x, false);
 		x++;
 	}
 
 	// test en lancant un seul rayon tout droit
-	// cast_a_ray(d, S_WIDTH / 2);
+	// cast_a_ray(d, S_WIDTH / 2, false);
 
 	// test en lancant un rayon non droit (eucli != perp)
-	// cast_a_ray(d, (S_WIDTH / 2) - 500);
+	// cast_a_ray(d, (S_WIDTH / 2) - 500, false);
 	
 	// Test pour comprendre comment utiliser les textures
 	// t_ivect here = init_ivect(800, 1000);
