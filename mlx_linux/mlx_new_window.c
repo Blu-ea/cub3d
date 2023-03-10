@@ -45,7 +45,7 @@ void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)
 	XSetWMProtocols(xvar->display, new_win->window, &(xvar->wm_delete_window), 1);
 	xgcv.foreground = -1;
 	xgcv.function = GXcopy;
-	xgcv.pln_mask = AllPlanes;
+	xgcv.plane_mask = AllPlanes;
 	new_win->gc = XCreateGC(xvar->display,new_win->window,
 				GCFunction|GCPlaneMask|GCForeground,&xgcv);
 	new_win->next = xvar->win_list;
