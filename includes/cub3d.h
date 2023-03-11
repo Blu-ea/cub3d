@@ -49,8 +49,12 @@
 #  define ROT 2 // rotation speed
 # endif
 
-# ifndef MOVE_FACTOR
-#  define MOVE_FACTOR 0.15 // mouvement speed : default was 0.25
+# ifndef MV_F
+#  define MV_F 0.15 // mouvement speed : default was 0.25
+# endif
+
+# ifndef BONUS
+#  define BONUS 1 // defini a un pour tester, devra etre a 0 ici et  defini a 1 dans un autre header comme on a dit
 # endif
 
 # define NO_ 0
