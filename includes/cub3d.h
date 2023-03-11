@@ -69,6 +69,28 @@
 	// LENGTH IS DEFINE FOR Y
 # define S_LENGTH 1700
 
+# define SUCCES_T "Nothing wrong"
+# define WRONG_ARG_T "Wrong number of arg"
+# define WRONG_FILE_T "Need a .cub file"
+# define ERROR_OPEN_T "File not found"
+# define ERROR_MALLOC_T "Malloc failled"
+# define TROUBLE_READ_T "Read failed"
+# define DOUBLE_DEF_TXR_T "Double Textures definition"
+# define DOUBLE_DEF_COLOR_T "Double Color definition"
+# define NOT_VALID_TXR_T "Need a .XPM file"
+# define NOT_VALID_COLOR_T "Need a RRR,GGG,BBB Color"
+# define MISSING_COLLOR_T "Missing a Color definition"
+# define MISSING_TXR_T "Missing a Texture definition"
+# define NOT_VALID_MAP_T "Map isn't valid"
+# define WRONG_INPUT_MAP_T "Map need to contain only '01SEW' or space"
+# define DOUBLE_STARTING_POINT_T "Double starting point in map"
+# define NO_STARTING_POINT_T "Missing starting point"
+# define MLX_INIT_FAIL_T "MLX initialisation Failed"
+# define MLX_WIN_FAIL_T "MLX window creation failed"
+# define MLX_NEW_IMG_FAILED_T "MLX image creation failed"
+# define BAD_TEXTURE_T "MLX texture not valid"
+# define XPM_IMAGE_FAILED_T "Creation of image failed"
+
 typedef enum e_error_list
 {
 	SUCCES,
@@ -90,9 +112,9 @@ typedef enum e_error_list
 	MLX_INIT_FAIL,
 	MLX_WIN_FAIL,
 	MLX_NEW_IMG_FAILED,
-	MLX_MAP_FAILED,
 	BAD_TEXTURE,
 	XPM_IMAGE_FAILED,
+	LST_ERRO_SIZE
 }	t_error;
 
 typedef struct s_rgb
