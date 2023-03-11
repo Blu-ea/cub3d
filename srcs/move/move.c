@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 08:43:20 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/11 09:47:28 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static bool	is_valid_move(t_data *d, t_dvect off)
 
 	mapi.x = (int)(d->pc._x + off.x);
 	mapi.y = (int)(d->pc._y + off.y);
-	if (mapi.x < 0 || mapi.x > d->file.width || mapi.y < 0 || mapi.y > d->file.length)
+	printf("mapi (%d, %d) -> max(%d, %d) -- pc(%f, %f)\n", mapi.x, mapi.y, d->file.width -1, d->file.length - 1, d->pc._x, d->pc._y);
+	if (mapi.x < 0 || mapi.x >= d->file.width || mapi.y < 0 || mapi.y >= d->file.length)
 		return (true);
 	tiletype = d->file.map[mapi.y][mapi.x];
 	if (tiletype == '0' || tiletype == 'O' || tiletype == ' ')
