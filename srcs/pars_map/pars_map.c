@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/11 16:07:10 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,22 @@ int	pars_map_fill(t_data *d, char **file)
 
 int	pars_map_input(t_data *d, char **map)
 {
-	int	*i;
 	int	j;
 
-	d->file.width = 0;
-	i = &d->file.length;
-	*i = -1;
-	while (map[++*i])
+	while (map[++d->file.length])
 	{
 		j = -1;
-		while (map[*i][++j])
+		while (map[d->file.length][++j])
 		{
-			if (map[*i][j] == '0' || map[*i][j] == 'N' || map[*i][j] == 'S'
-				|| map[*i][j] == 'E' || map[*i][j] == 'W')
+			if (ft_is_charset(map[d->file.length][j], "0NSEW"))
 			{
-				if (pars_map_border(map, *i, j, d))
+				if (pars_map_border(map, d->file.length, j, d))
 					return (EXIT_FAILURE);
 			}
-			else if (map[*i][j] != ' ' && map[*i][j] != '1')
-				return (d->err_code = WRONG_INPUT_MAP, EXIT_FAILURE);
+			else if (map[d->file.length][j] != ' ' \
+					&& map[d->file.length][j] != '1')
+				if (BONUS == 0 || map[d->file.length][j] != 'D')
+					return (d->err_code = WRONG_INPUT_MAP, EXIT_FAILURE);
 		}
 		if (j > d->file.width)
 			d->file.width = j;

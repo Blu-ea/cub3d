@@ -18,11 +18,12 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	printf ("BONUS == %d\n", BONUS);
 	init_data(&data);
 	if (cub_pars(&data, argv, argc))
 		return (printf ("Failed\n"), data.err_code);
-	print_map(data);
-	print_d(data);
+	// print_map(data);
+	// print_d(data);
 	game_loop(&data);
 	free(data.file.all);
 	ft_free_2d_array(data.file.map);
@@ -45,6 +46,8 @@ void	init_data(t_data *data)
 	data->file.all = NULL;
 	data->file.fd = 0;
 	data->file.map = NULL;
+	data->file.width = 0;
+	data->file.length = -1;
 	data->pc._x = 0;
 	data->pc._y = 0;
 	data->pc.start_face = '0';
@@ -58,5 +61,8 @@ void	init_data(t_data *data)
 	data->txr.wall[1].img = NULL;
 	data->txr.wall[2].img = NULL;
 	data->txr.wall[3].img = NULL;
+	data->n_image.img = NULL;
+	data->mlx.ptr = NULL;
+	data->mlx.win = NULL;
 	data->ghost = false;
 }

@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/10 15:22:39 by loumarti         ###   ########lyon.fr    #
+#    Updated: 2023/03/11 16:37:24 by amiguez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := cub3D
-
+NAME_BONUS := $(addprefix $(NAME),_bonus)
 # ############################################################################ #
 DIR_SRCS	:= srcs
 DIR_OBJS	:= .objs
@@ -83,6 +83,7 @@ LST_LIBFT	:=	libft.a
 # ############################################################################ #
 SRCS		:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS)) $(SRC_PARS) $(SRC_RENDER) $(SRC_MOVE) $(SRC_RAYC)
 OBJS		:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS)) $(OBJ_PARS) $(OBJ_RENDER) $(OBJ_MOVE) $(OBJ_RAYC)
+OBJS_BONUS	:=	$(OBJS:.o=_bonus.o)
 INCS		:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
 LIBFT		:=	$(addprefix $(DIR_LIBFT)/,$(LST_LIBFT))
 MLX			:=	$(addprefix $(DIR_MLX)/,$(LST_MLX))
@@ -112,9 +113,15 @@ END		:=	\033[0m
 # ############################################################################ #
 all : $(NAME)
 
-$(NAME) : $(OBJS) Makefile $(INCS) $(LIBFT) | $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -I$(DIR_INCS) -I$(DIR_MLX) -o $@ $(MLX) -lm -lX11 -lXext
+bonus : $(NAME_BONUS)
+
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@ $(MLX) -lm -lX11 -lXext 
+
 #-lmlx -framework OpenGL -framework AppKit
+
+$(NAME_BONUS) : $(OBJS_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $@ $(MLX) -lm -lX11 -lXext 
 
 ifeq ($(NORMINETTE),$(NORMITEST))
 	printf "$(GREEN)Everything is ok\n$(END)"
@@ -122,8 +129,11 @@ else
 	printf "$(RED)$(SUR)THERE IS AN ERROR WITH NORMINETTE IN LIBFT FILES !!\n $(NORMINETTE)$(END)"
 endif
 
-$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS)
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS) $(MLX)
 	$(CC) $(CFLAGS) -lm -c $< -o $@ -I$(DIR_INCS) -MMD
+
+$(DIR_OBJS)/%_bonus.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_LIBFT) $(DIR_OBJS) $(MLX)
+	$(CC) $(CFLAGS) -lm -c $< -o $@ -I$(DIR_INCS) -MMD -DBONUS=1
 
 $(DIR_OBJS) :
 	mkdir -p $(DIR_OBJS)
@@ -147,11 +157,13 @@ clean :
 
 fclean :
 	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 	rm -rf $(DIR_OBJS)
 	make -sC $(DIR_MLX) clean
 	make -sC $(DIR_LIBFT) fclean
 
 re : fclean all
+rebonus : fclean bonus
 
-.PHONY : all clean fclean re $(DIR_LIBFT) $(MLX)
+.PHONY : all bonus clean fclean re rebonus $(DIR_LIBFT) $(MLX)
 # .SILENT :

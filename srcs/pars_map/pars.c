@@ -14,7 +14,6 @@
 
 int	cub_pars(t_data *d, char **argv, int argc)
 {
-	printf ("data pointer %p\n", d);
 	if (argc != 2)
 		return (d->err_code = WRONG_ARG, pars_error(d));
 	else if (pars_infile(argv[1], d))

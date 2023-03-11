@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 09:47:28 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/11 14:41:04 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,19 @@ static void	ft_move_bonus(int key, t_data *d)
 		d->pc._x += offset.x;
 		d->pc._y += offset.y;
 	}
-	
 }
 
 static bool	is_valid_move(t_data *d, t_dvect off)
 {
-	char	tiletype;
 	t_ivect		mapi;
 
-	mapi.x = (int)(d->pc._x + off.x);
-	mapi.y = (int)(d->pc._y + off.y);
+	mapi = init_ivect_d(d->pc._x + off.x ,d->pc._y + off.y);
+	// mapi.x = (int)(d->pc._x + off.x);
+	// mapi.y = (int)(d->pc._y + off.y);
 	printf("mapi (%d, %d) -> max(%d, %d) -- pc(%f, %f)\n", mapi.x, mapi.y, d->file.width -1, d->file.length - 1, d->pc._x, d->pc._y);
 	if (mapi.x < 0 || mapi.x >= d->file.width || mapi.y < 0 || mapi.y >= d->file.length)
 		return (true);
-	tiletype = d->file.map[mapi.y][mapi.x];
-	if (tiletype == '0' || tiletype == 'O' || tiletype == ' ')
+	if (!ft_is_wall(mapi.x, mapi.y, d))
 		return (true);
 	else
 		return (false);

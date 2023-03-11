@@ -30,6 +30,7 @@ int		pars_content(t_data *d);
 
 void	ini_d_texture(t_data *d);
 int		start_line(t_data *d, int i);
+int		ft_is_charset(char c, char *str);
 
 int		pars_map(t_data *d, char **file);
 int		pars_xpm(t_data *d);
