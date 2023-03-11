@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:38:21 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 10:41:10 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 15:08:46 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	ft_key(int key, t_data *data)
 		ft_rotate(key, d);
 	else if (key == K_SPACE)
 		cast_a_ray(d, S_LENGTH / 2, true);
+	else if (key == K_G)
+		toogle_bool(&d->ghost);
 	return (0);
 }

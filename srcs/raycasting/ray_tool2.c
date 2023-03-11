@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:02:47 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 14:58:12 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 15:09:00 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,12 @@ int	ft_inf_wall(t_rayc *r, t_data *d)
 	if (r->dir.x > 0 && r->map.x > d->file.width)
 		return (r->inf = true, 0);
 	return (1);
+}
+
+void	toogle_bool(bool *boolean)
+{
+	if (*boolean == true)
+		*boolean = false;
+	else
+		*boolean = true;
 }

@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 09:28:24 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/03 09:34:59 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 15:12:53 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct s_dvect {
 	double	x;
 	double	y;
+
 }			t_dvect;
 
 t_dvect	init_dvect(double x, double y);

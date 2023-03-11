@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 14:43:43 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/10 15:11:26 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pixi
 	int	x;
 	int	y;
 	int	card;
+
 }				t_pixi;
 
 // datas to draw each slice of wall
@@ -63,6 +64,7 @@ typedef struct s_rayc
 	t_dvect		inter;
 	t_dvect		step;
 	t_dvect		stockxy;
+
 }				t_rayc;
 
 // raycasting
@@ -84,7 +86,8 @@ int		get_cardinal(t_data *d, t_rayc *r);
 // actions
 void	action_door(t_data *d, t_rayc *r);
 
-// debug
+// debug tools
 void	print_rayc1(t_rayc *r);
+void	toogle_bool(bool *boolean);
 
 #endif
