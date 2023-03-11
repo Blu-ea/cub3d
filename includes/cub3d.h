@@ -49,6 +49,10 @@
 #  define ROT 2 // rotation speed
 # endif
 
+# ifndef MOVE_FACTOR
+#  define MOVE_FACTOR 0.15 // mouvement speed : default was 0.25
+# endif
+
 # define NO_ 0
 # define SO_ 1
 # define EA_ 2

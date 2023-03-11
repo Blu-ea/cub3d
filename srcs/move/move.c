@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 12:05:00 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/11 07:27:14 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void	ft_move(int key, t_data *d)
 {
 	if (key == K_W || key == K_UP)
 	{
-		d->pc._x += d->pc.dir.x / 4;
-		d->pc._y += d->pc.dir.y / 4;
+		d->pc._x += d->pc.dir.x * MOVE_FACTOR;
+		d->pc._y += d->pc.dir.y * MOVE_FACTOR;
 	}
 	if (key == K_S || key == K_DOWN)
 	{
-		d->pc._x -= d->pc.dir.x / 4;
-		d->pc._y -= d->pc.dir.y / 4;
+		d->pc._x -= d->pc.dir.x * MOVE_FACTOR;
+		d->pc._y -= d->pc.dir.y * MOVE_FACTOR;
 	}
 	if (key == K_A)
 	{
-		d->pc._x += d->pc.dir.y / 4;
-		d->pc._y -= d->pc.dir.x / 4;
+		d->pc._x += d->pc.dir.y * MOVE_FACTOR;
+		d->pc._y -= d->pc.dir.x * MOVE_FACTOR;
 	}
 	if (key == K_D)
 	{
-		d->pc._x -= d->pc.dir.y / 4;
-		d->pc._y += d->pc.dir.x / 4;
+		d->pc._x -= d->pc.dir.y * MOVE_FACTOR;
+		d->pc._y += d->pc.dir.x * MOVE_FACTOR;
 	}
 }
 
