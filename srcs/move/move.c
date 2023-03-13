@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 14:41:04 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/13 08:34:46 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	ft_move_bonus(int key, t_data *d);
-static void	get_offset(int key, t_data *d, t_dvect *off);
-static bool	is_valid_move(t_data *d, t_dvect off);
+static void	get_offset_rot(int key, t_data *d, t_dvect *off, double *rot);
 
 void	ft_move(int key, t_data *d)
 {
@@ -49,52 +48,41 @@ void	ft_move(int key, t_data *d)
 static void	ft_move_bonus(int key, t_data *d)
 {
 	t_dvect	offset;
+	double	rot;
 
-	get_offset(key, d, &offset);
-	if (is_valid_move(d, offset))
+	get_offset_rot(key, d, &offset, &rot);
+	if (move_ray(d, rot))
 	{
 		d->pc._x += offset.x;
 		d->pc._y += offset.y;
 	}
 }
 
-static bool	is_valid_move(t_data *d, t_dvect off)
-{
-	t_ivect		mapi;
-
-	mapi = init_ivect_d(d->pc._x + off.x ,d->pc._y + off.y);
-	// mapi.x = (int)(d->pc._x + off.x);
-	// mapi.y = (int)(d->pc._y + off.y);
-	printf("mapi (%d, %d) -> max(%d, %d) -- pc(%f, %f)\n", mapi.x, mapi.y, d->file.width -1, d->file.length - 1, d->pc._x, d->pc._y);
-	if (mapi.x < 0 || mapi.x >= d->file.width || mapi.y < 0 || mapi.y >= d->file.length)
-		return (true);
-	if (!ft_is_wall(mapi.x, mapi.y, d))
-		return (true);
-	else
-		return (false);
-}
-
-static void	get_offset(int key, t_data *d, t_dvect *off)
+static void	get_offset_rot(int key, t_data *d, t_dvect *off, double *rot)
 {
 	if (key == K_W || key == K_UP)
 	{
 		off->x = d->pc.dir.x * MV_F;
 		off->y = d->pc.dir.y * MV_F;
+		*rot = 0;
 	}
 	if (key == K_S || key == K_DOWN)
 	{
 		off->x = -d->pc.dir.x * MV_F;
 		off->y = -d->pc.dir.y * MV_F;
+		*rot = M_PI;
 	}
 	if (key == K_A)
 	{
 		off->x = d->pc.dir.y * MV_F;
 		off->y = -d->pc.dir.x * MV_F;
+		*rot = 3 * M_PI / 2;
 	}
 	if (key == K_D)
 	{
 		off->x = -d->pc.dir.y * MV_F;
 		off->y = d->pc.dir.x * MV_F;
+		*rot = M_PI / 2;
 	}
 }
 

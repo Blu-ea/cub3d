@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 08:38:20 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 14:57:58 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 07:07:47 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	toogle(t_data *d, t_rayc *r)
 	{
 		d->file.map[r->map.y][r->map.x] = 'C';
 	}
-	else if (d->file.map[r->map.y][r->map.x] == 'O')
+	else if (d->file.map[r->map.y][r->map.x] == 'C')
 	{
 		d->file.map[r->map.y][r->map.x] = 'O';
 	}

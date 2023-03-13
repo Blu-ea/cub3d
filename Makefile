@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 09:17:51 by amiguez           #+#    #+#              #
-#    Updated: 2023/03/11 16:37:24 by amiguez          ###   ########.fr        #
+#    Updated: 2023/03/13 07:44:57 by loumarti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ OBJ_RAYC	:=	$(addprefix $(DIR_OBJS)/,$(LST_RAYC:.c=.o))
 MOVE		:=	h_key.c\
 				h_mouse.c\
 				h_event.c\
+				move_ray.c\
 				move.c
 DIR_MOVE	:=	move
 LST_MOVE	:=	$(addprefix $(DIR_MOVE)/,$(MOVE))

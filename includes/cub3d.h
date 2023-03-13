@@ -53,6 +53,10 @@
 #  define MV_F 0.15 // mouvement speed : default was 0.25
 # endif
 
+# ifndef MV_RANGE
+#  define MV_RANGE 0.20 // distance to keep player away from wall
+# endif
+
 # ifndef BONUS
 #  define BONUS 0 // defini a un pour tester, devra etre a 0 ici et  defini a 1 dans un autre header comme on a dit
 # endif
