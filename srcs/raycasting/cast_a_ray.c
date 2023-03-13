@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:26:57 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 14:46:44 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 09:57:28 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_rayc(t_data *d, t_rayc *r, int x);
 static void	get_stockxy_step(t_rayc *r);
-static void	perform_dda(t_data *d, t_rayc *r);
-static void	catch_inter(t_rayc *r);
+static void	perform_dda(t_data *d, t_rayc *r, bool action);
+static void	catch_inter(t_data *d, t_rayc *r);
 
 void	cast_a_ray(t_data *d, int x, bool action)
 {
@@ -23,15 +23,15 @@ void	cast_a_ray(t_data *d, int x, bool action)
 
 	init_rayc(d, &rayc, x);
 	get_stockxy_step(&rayc);
-	perform_dda(d, &rayc);
+	perform_dda(d, &rayc, action);
 	if (action && rayc.hit == true)
 	{
-		catch_inter(&rayc);
+		catch_inter(d, &rayc);
 		action_door(d, &rayc);
 	}
 	else if (!action && rayc.hit == true)
 	{
-		catch_inter(&rayc);
+		catch_inter(d, &rayc);
 		wall_slice(d, &rayc, x);
 	}
 }
@@ -78,7 +78,7 @@ static void	get_stockxy_step(t_rayc *r)
 
 // using the Digital Differential Analysis algorithm
 // here the ray is shot
-static void	perform_dda(t_data *d, t_rayc *r)
+static void	perform_dda(t_data *d, t_rayc *r, bool action)
 {
 	while (ft_inf_wall(r, d))
 	{
@@ -96,15 +96,19 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->stockxy.y += r->uss.y;
 			r->side = false;
 		}
-		if (ft_is_wall(r->map.x, r->map.y, d))
+		if (action && ft_what_tile(r->map.x, r->map.y, d) == O_DOOR)
+			r->hit = true;
+		if (ft_what_tile(r->map.x, r->map.y, d) != VOID \
+		&& ft_what_tile(r->map.x, r->map.y, d) != O_DOOR)
 		{
 			r->hit = true;
 		}
 	}
 }
 
-static void	catch_inter(t_rayc *r)
+static void	catch_inter(t_data *d, t_rayc *r)
 {
 	r->inter.x = r->start.x + (r->dir.x * r->length);
 	r->inter.y = r->start.y + (r->dir.y * r->length);
+	r->tile = ft_what_tile(r->map.x, r->map.y, d);
 }

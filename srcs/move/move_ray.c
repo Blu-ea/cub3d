@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 07:33:20 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/13 08:41:49 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 09:34:19 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_rayc(t_data *d, t_rayc *r, double rot);
 static void	get_stockxy_step(t_rayc *r);
 static void	perform_dda(t_data *d, t_rayc *r);
-static void	catch_inter(t_rayc *r);
+static void	catch_inter(t_data *d, t_rayc *r);
 
 // return if the movement is allowed or not
 bool	move_ray(t_data *d, double rot)
@@ -27,7 +27,7 @@ bool	move_ray(t_data *d, double rot)
 	perform_dda(d, &rayc);
 	if (rayc.hit == true)
 	{
-		catch_inter(&rayc);
+		catch_inter(d, &rayc);
 		if (rayc.length < MV_RANGE)
 		{
 			return (false);
@@ -97,15 +97,17 @@ static void	perform_dda(t_data *d, t_rayc *r)
 			r->stockxy.y += r->uss.y;
 			r->side = false;
 		}
-		if (ft_is_wall(r->map.x, r->map.y, d))
+		if (ft_what_tile(r->map.x, r->map.y, d) != VOID \
+		&& ft_what_tile(r->map.x, r->map.y, d) != O_DOOR)
 		{
 			r->hit = true;
 		}
 	}
 }
 
-static void	catch_inter(t_rayc *r)
+static void	catch_inter(t_data *d, t_rayc *r)
 {
 	r->inter.x = r->start.x + (r->dir.x * r->length);
 	r->inter.y = r->start.y + (r->dir.y * r->length);
+	r->tile = ft_what_tile(r->map.x, r->map.y, d);
 }

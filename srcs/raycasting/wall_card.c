@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:04:41 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 14:54:21 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 09:43:22 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	get_south_north(t_data *d, t_rayc *r);
 // determine the cardinal orientation of the hit face
 int	get_cardinal(t_data *d, t_rayc *r)
 {
+	if (r->tile == C_DOOR)
+		return (4);
 	if (r->side)
 		return (get_west_east(d, r));
 	else

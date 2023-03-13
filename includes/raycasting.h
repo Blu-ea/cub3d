@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/10 15:11:26 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 09:37:18 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 # define EA_COL_1 0x51c989
 # define WE_COL_0 0xffa754
 # define WE_COL_1 0xde9149
+
+typedef enum e_tile
+{
+	VOID,
+	WALL,
+	C_DOOR,
+	O_DOOR
+}			t_tile;
 
 // pixel info needed to put on walls
 typedef struct s_pixi
@@ -62,6 +70,7 @@ typedef struct s_rayc
 	bool		side;
 	double		length;
 	t_dvect		inter;
+	t_tile		tile;
 	t_dvect		step;
 	t_dvect		stockxy;
 
@@ -76,6 +85,7 @@ double	get_dir_x(double angle);
 double	get_dir_y(double angle);
 void	get_unit_step(t_rayc *r);
 int		ft_is_wall(int x, int y, t_data *d);
+t_tile	ft_what_tile(int x, int y, t_data *d);
 int		ft_inf_wall(t_rayc *r, t_data *d);
 
 // draw wall
