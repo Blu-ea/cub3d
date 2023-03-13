@@ -1,0 +1,24 @@
+Wont work if 
+	Multiple declaration of the same txr/color are present
+	does finish with '.xpm'
+	absence of a wall txr/color declaration
+
+
+NO ./textures/north.XPM
+
+SO ./textures/south.XPM
+
+WE ./textures/weast.XPM
+
+EA ./textures/east.XPM
+
+DO ./textures/door1.XPM
+
+C 40,50,60
+F 60,50,40
+
+
+1111111111111
+10000000O0001
+100000N0C0001
+1111111111111

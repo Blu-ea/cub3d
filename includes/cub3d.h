@@ -61,6 +61,7 @@
 # define SO_ 1
 # define EA_ 2
 # define WE_ 3
+# define DO_ 4
 
 # define F_ 0
 # define C_ 1
@@ -152,8 +153,8 @@ typedef struct s_new_image
 typedef struct s_textures
 {
 	t_color		plan[2];
-	char		*path[4];
-	t_new_image	wall[4];
+	char		*path[5];
+	t_new_image	wall[5];
 	int			size;
 }	t_textures;
 

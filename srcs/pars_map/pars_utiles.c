@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 15:39:46 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/13 06:57:05 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ini_d_texture(t_data *d)
 	d->txr.path[SO_] = NULL;
 	d->txr.path[EA_] = NULL;
 	d->txr.path[WE_] = NULL;
+	d->txr.path[DO_] = NULL;
 }
 
 int	pars_map_start_l(char *line)

@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:09:08 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 16:07:10 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/13 07:34:13 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int	pars_map_input(t_data *d, char **map)
 			}
 			else if (map[d->file.length][j] != ' ' \
 					&& map[d->file.length][j] != '1')
-				if (BONUS == 0 || map[d->file.length][j] != 'D')
+				if (BONUS == 0 || (map[d->file.length][j] != 'O' && \
+						map[d->file.length][j] != 'C') || !d->txr.path[DO_])
 					return (d->err_code = WRONG_INPUT_MAP, EXIT_FAILURE);
 		}
 		if (j > d->file.width)

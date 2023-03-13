@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:14:48 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/09 05:03:27 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/13 07:27:24 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ft_mini_map(t_data *d)
 				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xffffff);
 			else if (d->file.map[y / MAP_ZOOM][x / MAP_ZOOM] == '1')
 				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x000000);
+			else if (d->file.map[y / MAP_ZOOM][x / MAP_ZOOM] == 'C')
+				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xF00000);
+			else if (d->file.map[y / MAP_ZOOM][x / MAP_ZOOM] == 'O')
+				my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x00F000);
 		}
 	}
 	ft_mini_player(d);

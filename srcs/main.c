@@ -31,10 +31,12 @@ int	main(int argc, char **argv)
 	free(data.txr.path[1]);
 	free(data.txr.path[2]);
 	free(data.txr.path[3]);
+	free(data.txr.path[4]);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[0].img);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[1].img);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[2].img);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[3].img);
+	mlx_destroy_image(data.mlx.ptr, data.txr.wall[4].img);
 	mlx_destroy_image(data.mlx.ptr, data.n_image.img);
 	mlx_destroy_window(data.mlx.ptr, data.mlx.win);
 	mlx_destroy_display(data.mlx.ptr);
@@ -57,10 +59,12 @@ void	init_data(t_data *data)
 	data->txr.path[1] = NULL;
 	data->txr.path[2] = NULL;
 	data->txr.path[3] = NULL;
+	data->txr.path[4] = NULL;
 	data->txr.wall[0].img = NULL;
 	data->txr.wall[1].img = NULL;
 	data->txr.wall[2].img = NULL;
 	data->txr.wall[3].img = NULL;
+	data->txr.wall[4].img = NULL;
 	data->n_image.img = NULL;
 	data->mlx.ptr = NULL;
 	data->mlx.win = NULL;

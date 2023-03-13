@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_content.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/11 07:47:44 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/13 06:56:20 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	pars_content(t_data *d)
 			i = add_texture(d, EA_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "WE ", 3) && start_line(d, i))
 			i = add_texture(d, WE_, i + 3);
+		else if (!ft_strncmp(&d->file.all[i], "DO ", 3) && start_line(d, i))
+			i = add_texture(d, DO_, i + 3);
 		else if (!ft_strncmp(&d->file.all[i], "F ", 2) && start_line(d, i))
 			i = add_color(d, F_, i + 2);
 		else if (!ft_strncmp(&d->file.all[i], "C ", 2) && start_line(d, i))
@@ -51,12 +53,12 @@ int	add_texture(t_data *d, int face, int i)
 
 	j = i;
 	if (d->txr.path[face])
-		return (-1);
+		return (d->err_code = DOUBLE_DEF_TXR, -1);
 	while (d->file.all[j] != '\n' && d->file.all[j])
 		j++;
 	d->txr.path[face] = ft_strndup(&d->file.all[i], j - i);
 	if (!d->txr.path[face])
-		return (-1);
+		return (d->err_code = ERROR_MALLOC, -1);
 	return (j - 1);
 }
 

@@ -23,6 +23,7 @@ t_error	pars_error(t_data *d)
 	free(d->txr.path[1]);
 	free(d->txr.path[2]);
 	free(d->txr.path[3]);
+	free(d->txr.path[4]);
 	if (d->txr.wall[0].img)
 		mlx_destroy_image(d->mlx.ptr, d->txr.wall[0].img);
 	if (d->txr.wall[1].img)
@@ -31,6 +32,8 @@ t_error	pars_error(t_data *d)
 		mlx_destroy_image(d->mlx.ptr, d->txr.wall[2].img);
 	if (d->txr.wall[3].img)
 		mlx_destroy_image(d->mlx.ptr, d->txr.wall[3].img);
+	if (d->txr.wall[4].img)
+		mlx_destroy_image(d->mlx.ptr, d->txr.wall[4].img);
 	if (d->n_image.img)
 		mlx_destroy_image(d->mlx.ptr, d->n_image.img);
 	if (d->mlx.win)
@@ -72,6 +75,7 @@ void	ft_error_print(int err_code)
 {
 	char	*err_lst[LST_ERRO_SIZE];
 
+	printf ("err = %d\n", err_code);
 	(void)err_code;
 	ft_error_init(err_lst);
 	printf ("Error : %s", err_lst[err_code]);
