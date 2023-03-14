@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:03:04 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/14 16:44:35 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:47:44 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,17 @@ void	ft_putcrossair(t_data *d)
 
 void	ft_rmouse(t_data *d)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	double	rot;
 
 	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
 	if (!mlx_in_bound(x, y))
 	{
-		printf (" === mouse x,y = %d,%d\n", x, y);
-		my_mlx_pixel_put(d, x, y, 0xffffff);
+		my_mlx_pixel_put(d, x, S_LENGTH / 2, 0xffffff);
 	}
-	y = (x - (S_WIDTH / 2)) / 10;
-	printf ("y = %d\n", y);
-	rotation_matrix(&d->pc.dir, y);
-	rotation_matrix(&d->pc.pln, y);
+	rot = (double)(x - (S_WIDTH / 2)) / 1000.0;
+	rotation_matrix(&d->pc.dir, rot);
+	rotation_matrix(&d->pc.pln, rot);
 	mlx_mouse_move(d->mlx.ptr, d->mlx.win, S_WIDTH / 2, S_LENGTH / 2);
-	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
 }
