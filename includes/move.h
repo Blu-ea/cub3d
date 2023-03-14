@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:39:05 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/13 08:19:52 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 09:03:48 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "cub3d.h"
 # include <stdbool.h>
 
-typedef struct s_dvect t_dvect;
+typedef struct s_dvect	t_dvect;
 
 void	ft_rotate(int key, t_data *d);
 

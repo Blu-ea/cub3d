@@ -6,7 +6,7 @@
 /*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/13 08:34:46 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 08:55:11 by loumarti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,27 +88,46 @@ static void	get_offset_rot(int key, t_data *d, t_dvect *off, double *rot)
 
 void	ft_rotate(int key, t_data *d)
 {
-	double	oldplnx;
-	double	olddirx;
+	// double	oldplnx;
+	// double	olddirx;
 	double	rot;
 
 	rot = ROT * M_PI / 180;
+	// if (key == K_LEFT || key == K_Q)
+	// {
+	// 	olddirx = d->pc.dir.x;
+	// 	d->pc.dir.x = d->pc.dir.x * cos(-rot) - d->pc.dir.y * sin(-rot);
+	// 	d->pc.dir.y = olddirx * sin(-rot) + d->pc.dir.y * cos(-rot);
+	// 	oldplnx = d->pc.pln.x;
+	// 	d->pc.pln.x = d->pc.pln.x * cos(-rot) - d->pc.pln.y * sin(-rot);
+	// 	d->pc.pln.y = oldplnx * sin(-rot) + d->pc.pln.y * cos(-rot);
+	// }
+	// if (key == K_RIGHT || key == K_E)
+	// {
+	// 	olddirx = d->pc.dir.x;
+	// 	d->pc.dir.x = d->pc.dir.x * cos(rot) - d->pc.dir.y * sin(rot);
+	// 	d->pc.dir.y = olddirx * sin(rot) + d->pc.dir.y * cos(rot);
+	// 	oldplnx = d->pc.pln.x;
+	// 	d->pc.pln.x = d->pc.pln.x * cos(rot) - d->pc.pln.y * sin(rot);
+	// 	d->pc.pln.y = oldplnx * sin(rot) + d->pc.pln.y * cos(rot);
+	// }
+
+	/*       \[^_^]/            */
+	// CouCou Antoine, pour tirer les rayons de mouvement sur les
+	// directions du player j'ai fait cette fonction de rotation.
+	// elle me parait fonctionner parfaitement, je laisse tout en
+	// comments si tu veux check, tu pourras les effacer si ca te va.
+	// ca permet aussi de faire presente un peu different du tuto 
+
 	if (key == K_LEFT || key == K_Q)
 	{
-		olddirx = d->pc.dir.x;
-		d->pc.dir.x = d->pc.dir.x * cos(-rot) - d->pc.dir.y * sin(-rot);
-		d->pc.dir.y = olddirx * sin(-rot) + d->pc.dir.y * cos(-rot);
-		oldplnx = d->pc.pln.x;
-		d->pc.pln.x = d->pc.pln.x * cos(-rot) - d->pc.pln.y * sin(-rot);
-		d->pc.pln.y = oldplnx * sin(-rot) + d->pc.pln.y * cos(-rot);
+		rotation_matrix(&d->pc.dir, -rot);
+		rotation_matrix(&d->pc.pln, -rot);
 	}
 	if (key == K_RIGHT || key == K_E)
 	{
-		olddirx = d->pc.dir.x;
-		d->pc.dir.x = d->pc.dir.x * cos(rot) - d->pc.dir.y * sin(rot);
-		d->pc.dir.y = olddirx * sin(rot) + d->pc.dir.y * cos(rot);
-		oldplnx = d->pc.pln.x;
-		d->pc.pln.x = d->pc.pln.x * cos(rot) - d->pc.pln.y * sin(rot);
-		d->pc.pln.y = oldplnx * sin(rot) + d->pc.pln.y * cos(rot);
+		rotation_matrix(&d->pc.dir, rot);
+		rotation_matrix(&d->pc.pln, rot);
 	}
+
 }

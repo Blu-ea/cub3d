@@ -58,7 +58,7 @@
 # endif
 
 # ifndef BONUS
-#  define BONUS 0 // defini a un pour tester, devra etre a 0 ici et  defini a 1 dans un autre header comme on a dit
+#  define BONUS 0
 # endif
 
 # define NO_ 0
@@ -87,7 +87,8 @@
 # define MISSING_COLLOR_T "Missing a Color definition"
 # define MISSING_TXR_T "Missing a Texture definition"
 # define NOT_VALID_MAP_T "Map isn't valid"
-# define WRONG_INPUT_MAP_T "Map need to contain only '01SEW' or space (and D in bonus cases)"
+# define WRONG_INPUT_MAP_T "Map need to contain only \
+'01SEW' or space (and D in bonus cases)"
 # define DOUBLE_STARTING_POINT_T "Double starting point in map"
 # define NO_STARTING_POINT_T "Missing starting point"
 # define MLX_INIT_FAIL_T "MLX initialisation Failed"

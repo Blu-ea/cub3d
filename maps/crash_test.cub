@@ -1,7 +1,7 @@
 C 255,50,60
 on peut ecrire nawak
 
-F 60,50,40
+
 oojoijoijoij
 
 NO ./textures/try1.XPM
@@ -12,7 +12,7 @@ SO ./textures/try5.XPM
 kikouu
 WE ./textures/try3.XPM
 
-
+F 60,50,70
 
 
 EA ./textures/try6.XPM
