@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	ft_error_print(int err_code);
+int		ft_error_print(int err_code);
 char	**ft_error_init(char *lst[LST_ERRO_SIZE]);
 
 t_error	pars_error(t_data *d)
@@ -41,8 +41,7 @@ t_error	pars_error(t_data *d)
 	if (d->mlx.ptr)
 		mlx_destroy_display(d->mlx.ptr);
 	free(d->mlx.ptr);
-	ft_error_print(d->err_code);
-	return (d->err_code);
+	return (ft_error_print(d->err_code));
 }
 
 char	**ft_error_init(char *lst[LST_ERRO_SIZE])
@@ -71,12 +70,12 @@ char	**ft_error_init(char *lst[LST_ERRO_SIZE])
 	return (lst);
 }
 
-void	ft_error_print(int err_code)
+int	ft_error_print(int err_code)
 {
 	char	*err_lst[LST_ERRO_SIZE];
 
-	printf ("err = %d\n", err_code);
-	(void)err_code;
+	printf ("Error\n");
 	ft_error_init(err_lst);
-	printf ("Error : %s", err_lst[err_code]);
+	printf ("%s\n", err_lst[err_code]);
+	return (err_code);
 }

@@ -206,6 +206,7 @@ typedef struct s_data
 	t_mlx_d		mlx;
 	t_new_image	n_image;
 	bool		ghost;
+	bool		mouse_hide;
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 22:55:50 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/13 06:56:20 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:02:02 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	pars_content(t_data *d)
 		if (i == -1)
 			return (EXIT_FAILURE);
 	}
-	if (pars_texture_f(d))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (pars_texture_f(d));
 }
 
 int	add_texture(t_data *d, int face, int i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:52:42 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/14 08:55:11 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 16:13:48 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,8 @@ static void	get_offset_rot(int key, t_data *d, t_dvect *off, double *rot)
 	}
 }
 
-void	ft_rotate(int key, t_data *d)
-{
 	// double	oldplnx;
 	// double	olddirx;
-	double	rot;
-
-	rot = ROT * M_PI / 180;
 	// if (key == K_LEFT || key == K_Q)
 	// {
 	// 	olddirx = d->pc.dir.x;
@@ -112,13 +107,11 @@ void	ft_rotate(int key, t_data *d)
 	// 	d->pc.pln.y = oldplnx * sin(rot) + d->pc.pln.y * cos(rot);
 	// }
 
-	/*       \[^_^]/            */
-	// CouCou Antoine, pour tirer les rayons de mouvement sur les
-	// directions du player j'ai fait cette fonction de rotation.
-	// elle me parait fonctionner parfaitement, je laisse tout en
-	// comments si tu veux check, tu pourras les effacer si ca te va.
-	// ca permet aussi de faire presente un peu different du tuto 
+void	ft_rotate(int key, t_data *d)
+{
+	double	rot;
 
+	rot = ROT * M_PI / 180;
 	if (key == K_LEFT || key == K_Q)
 	{
 		rotation_matrix(&d->pc.dir, -rot);
@@ -129,5 +122,4 @@ void	ft_rotate(int key, t_data *d)
 		rotation_matrix(&d->pc.dir, rot);
 		rotation_matrix(&d->pc.pln, rot);
 	}
-
 }

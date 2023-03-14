@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 10:14:48 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/13 07:27:24 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:22:33 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	ft_mini_player(t_data *d)
 	{
 		x = d->pc._x * MAP_ZOOM - MAP_ZOOM / 5;
 		while (++x < d->pc._x * MAP_ZOOM + MAP_ZOOM / 5)
-			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xff0000);
+			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0xf005f0);
 	}
 	y = (d->pc._y + (d->pc.dir.y / 1.5)) * MAP_ZOOM - MAP_ZOOM / 8;
 	while (++y < (d->pc._y + (d->pc.dir.y / 1.5)) * MAP_ZOOM + MAP_ZOOM / 8)
 	{
 		x = (d->pc._x + (d->pc.dir.x / 1.5)) * MAP_ZOOM - MAP_ZOOM / 8;
 		while (++x < (d->pc._x + (d->pc.dir.x / 1.5)) * MAP_ZOOM + MAP_ZOOM / 8)
-			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x00ff00);
+			my_mlx_pixel_put(d, x + MAP_OFFSETX, y + MAP_OFFSETY, 0x00ff50);
 	}
 }

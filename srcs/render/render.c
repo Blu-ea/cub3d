@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:03:04 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/10 14:45:19 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/14 16:44:35 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	ft_putcrossair(t_data *d);
+void	ft_rmouse(t_data *d);
 
-int	ft_render(t_data *data)
+int	ft_render(t_data *d)
 {
-	t_data	*d;
 	int		x;
 	int		y;
 
-	d = data;
 	x = -1;
 	while (++x < S_WIDTH)
 	{
@@ -35,15 +34,9 @@ int	ft_render(t_data *data)
 	}
 	ft_putwall(d);
 	ft_putcrossair(d);
-	x = 0;
-	y = 0;
 	ft_mini_map(d);
-	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
-	if (!mlx_in_bound(x, y))
-	{
-		// printf ("mouse x,y = %d,%d\n", x, y);
-		my_mlx_pixel_put(d, x, y, 0xffffff);
-	}
+	if (d->mouse_hide)
+		ft_rmouse(d);
 	mlx_put_image_to_window(d->mlx.ptr, d->mlx.win, d->n_image.img, 0, 0);
 	return (0);
 }
@@ -67,4 +60,23 @@ void	ft_putcrossair(t_data *d)
 		while (++y < (S_LENGTH / 2) + 5)
 			my_mlx_pixel_put (d, x, y, 0x000000);
 	}
+}
+
+void	ft_rmouse(t_data *d)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
+	if (!mlx_in_bound(x, y))
+	{
+		printf (" === mouse x,y = %d,%d\n", x, y);
+		my_mlx_pixel_put(d, x, y, 0xffffff);
+	}
+	y = (x - (S_WIDTH / 2)) / 10;
+	printf ("y = %d\n", y);
+	rotation_matrix(&d->pc.dir, y);
+	rotation_matrix(&d->pc.pln, y);
+	mlx_mouse_move(d->mlx.ptr, d->mlx.win, S_WIDTH / 2, S_LENGTH / 2);
+	mlx_mouse_get_pos(d->mlx.ptr, d->mlx.win, &x, &y);
 }

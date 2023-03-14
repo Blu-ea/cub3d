@@ -18,12 +18,9 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	printf ("BONUS == %d\n", BONUS);
 	init_data(&data);
 	if (cub_pars(&data, argv, argc))
-		return (printf ("Failed\n"), data.err_code);
-	// print_map(data);
-	// print_d(data);
+		return (data.err_code);
 	game_loop(&data);
 	free(data.file.all);
 	ft_free_2d_array(data.file.map);
@@ -36,7 +33,8 @@ int	main(int argc, char **argv)
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[1].img);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[2].img);
 	mlx_destroy_image(data.mlx.ptr, data.txr.wall[3].img);
-	mlx_destroy_image(data.mlx.ptr, data.txr.wall[4].img);
+	if (data.txr.wall[4].img)
+		mlx_destroy_image(data.mlx.ptr, data.txr.wall[4].img);
 	mlx_destroy_image(data.mlx.ptr, data.n_image.img);
 	mlx_destroy_window(data.mlx.ptr, data.mlx.win);
 	mlx_destroy_display(data.mlx.ptr);
@@ -69,4 +67,5 @@ void	init_data(t_data *data)
 	data->mlx.ptr = NULL;
 	data->mlx.win = NULL;
 	data->ghost = false;
+	data->mouse_hide = false;
 }

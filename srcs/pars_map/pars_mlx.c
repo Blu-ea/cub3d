@@ -6,7 +6,7 @@
 /*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:39:03 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/13 07:36:28 by amiguez          ###   ########.fr       */
+/*   Updated: 2023/03/14 14:55:47 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ int	ft_xpm_img(t_data *d)
 			&d->txr.wall[i].bit_per_pixel, \
 			&d->txr.wall[i].line_length, &d->txr.wall[i].endian);
 	}
-	if (d->txr.wall[0].size != d->txr.wall[1].size || \
-			d->txr.wall[0].size != d->txr.wall[2].size || \
-			d->txr.wall[0].size != d->txr.wall[3].size)
-		return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
 	d->txr.size = d->txr.wall[0].size;
+	if (d->txr.size != d->txr.wall[1].size || d->txr.size != \
+			d->txr.wall[2].size || d->txr.size != d->txr.wall[3].size)
+		return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
+	if (d->txr.wall[DO_].img && d->txr.size != d->txr.wall[DO_].size)
+		return (d->err_code = BAD_TEXTURE, EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
