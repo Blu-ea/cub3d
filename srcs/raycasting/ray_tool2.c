@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tool2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 08:02:47 by amiguez           #+#    #+#             */
-/*   Updated: 2023/03/14 08:52:50 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/15 11:50:47 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	ft_is_wall(int x, int y, t_data *d)
-{
-	if (map_in_bound(x, y, d) && d->file.map[y][x] == '1')
-		return (1);
-	return (0);
-}
 
 t_tile	ft_what_tile(int x, int y, t_data *d)
 {

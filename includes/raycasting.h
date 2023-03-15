@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumarti <loumarti@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: amiguez <amiguez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:52:40 by loumarti          #+#    #+#             */
-/*   Updated: 2023/03/13 09:37:18 by loumarti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/15 11:50:51 by amiguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	cast_a_ray(t_data *d, int x, bool action);
 double	get_dir_x(double angle);
 double	get_dir_y(double angle);
 void	get_unit_step(t_rayc *r);
-int		ft_is_wall(int x, int y, t_data *d);
 t_tile	ft_what_tile(int x, int y, t_data *d);
 int		ft_inf_wall(t_rayc *r, t_data *d);
 
