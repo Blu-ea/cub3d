@@ -88,7 +88,7 @@
 # define MISSING_TXR_T "Missing a Texture definition"
 # define NOT_VALID_MAP_T "Map isn't valid"
 # define WRONG_INPUT_MAP_T "Map need to contain only \
-'01SEW' or space (and D in bonus cases)"
+'01SEWN' or space (and O/C in bonus cases)"
 # define DOUBLE_STARTING_POINT_T "Double starting point in map"
 # define NO_STARTING_POINT_T "Missing starting point"
 # define MLX_INIT_FAIL_T "MLX initialisation Failed"
